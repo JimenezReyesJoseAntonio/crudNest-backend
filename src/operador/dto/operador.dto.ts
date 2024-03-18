@@ -11,6 +11,6 @@ codigoPostal: number;
 puesto: string;
 licencia: string;
 residencia: string;
-
+estatus:string;
 
 }

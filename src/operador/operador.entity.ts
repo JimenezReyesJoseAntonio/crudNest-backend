@@ -42,6 +42,8 @@ export class OperadorEntity{
     @Column({type: 'varchar',length: 20, nullable: false})
     residencia: string;
 
+    @Column({type: 'varchar',length: 20, nullable: false})
+    estatus: string;
 
 
 

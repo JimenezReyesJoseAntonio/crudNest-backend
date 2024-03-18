@@ -1,6 +1,8 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
 import { OperadorService } from './operador.service';
 import { OperadorDto } from './dto/operador.dto';
+import { JwtAuthGuard } from 'src/guards/jwt.guard';
+import { RolesGuard } from 'src/guards/rol.guard';
 
 @Controller('operador')
 export class OperadorController {
@@ -9,33 +11,34 @@ export class OperadorController {
         private readonly operadorService: OperadorService
     ){}
 
+    @UseGuards(JwtAuthGuard, RolesGuard)
     @Get()
     async getAll() {
         
         return await this.operadorService.getAll();
     }
 
-    
+    @UseGuards(JwtAuthGuard, RolesGuard)
     @Get(':id')
     async getOne(@Param('id', ParseIntPipe) id: number) {
         return await this.operadorService.findById(id);
     }
 
-    
+    @UseGuards(JwtAuthGuard, RolesGuard) 
     @Post()
     async create(@Body() dto: OperadorDto) {
         console.log('de dto'+dto.nombre);
         return await this.operadorService.create(dto);
     }
     
-    
+    @UseGuards(JwtAuthGuard, RolesGuard)
     @Put(':id')
     async update(@Param('id', ParseIntPipe) id: number, @Body() dto: OperadorDto) {
         return await this.operadorService.update(id, dto);
     }
 
 
-    
+    @UseGuards(JwtAuthGuard, RolesGuard)
     @Delete(':id')
     async delete(@Param('id', ParseIntPipe) id: number){
         return await this.operadorService.delete(id)
