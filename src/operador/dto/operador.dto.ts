@@ -1,3 +1,5 @@
+import { EstatusDto } from "./estatus.dto";
+
 export class OperadorDto{
 nombre: string;
 apellidoPaterno: string;
@@ -11,6 +13,6 @@ codigoPostal: number;
 puesto: string;
 licencia: string;
 residencia: string;
-estatus:string;
+estatus:EstatusDto;
 
 }

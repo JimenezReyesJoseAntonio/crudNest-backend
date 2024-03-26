@@ -68,7 +68,8 @@ export class OperadorService {
             operador.puesto = dto.puesto ?? operador.puesto;
             operador.licencia = dto.licencia ?? operador.licencia;
             operador.residencia = dto.residencia ?? operador.residencia;
-    
+            operador.estatus = dto.estatus ?? operador.estatus;
+            
             await this.operadorRepository.save(operador);
             
             return { message: 'Datos del operador actualizados' };

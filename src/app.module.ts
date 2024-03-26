@@ -30,7 +30,7 @@ import { OperadorModule } from './operador/operador.module';
         logging:false
       }),
       inject: [ConfigService],
-    }),
+    }), 
     ProductoModule,
     UsuarioModule,
     RolModule,

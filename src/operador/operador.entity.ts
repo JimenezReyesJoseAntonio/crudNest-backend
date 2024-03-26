@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { EstatusEntity } from "./estatus.entity";
 
 @Entity({name:'operador'})
 export class OperadorEntity{
@@ -42,10 +43,11 @@ export class OperadorEntity{
     @Column({type: 'varchar',length: 20, nullable: false})
     residencia: string;
 
-    @Column({type: 'varchar',length: 20, nullable: false})
-    estatus: string;
 
 
+    @ManyToOne(type => EstatusEntity, { eager: true })// eager: true  carga automáticamente la relación
+    @JoinColumn({ name: 'estatus_id' })
+    estatus: EstatusEntity;
 
 
 
