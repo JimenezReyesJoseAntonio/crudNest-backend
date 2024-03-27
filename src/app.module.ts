@@ -9,6 +9,7 @@ import { UsuarioModule } from './usuario/usuario.module';
 import { RolModule } from './rol/rol.module';
 import { AuthModule } from './auth/auth.module';
 import { OperadorModule } from './operador/operador.module';
+import { GruaModule } from './grua/grua.module';
 
 @Module({
   imports: [
@@ -36,6 +37,7 @@ import { OperadorModule } from './operador/operador.module';
     RolModule,
     AuthModule,
     OperadorModule,
+    GruaModule,
   ],
   controllers: [AppController],
   providers: [AppService],
