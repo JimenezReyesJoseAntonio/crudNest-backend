@@ -35,7 +35,7 @@ import { OperadorModule } from './operador/operador.module';
     UsuarioModule,
     RolModule,
     AuthModule,
-    OperadorModule
+    OperadorModule,
   ],
   controllers: [AppController],
   providers: [AppService],

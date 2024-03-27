@@ -14,7 +14,7 @@ export class OperadorService {
     async getAll(): Promise<OperadorEntity[]> {
         const list = await this.operadorRepository.find();
         if (!list.length) {
-            throw new NotFoundException({message: 'la lista esta vacia'});
+            throw new NotFoundException({message: 'La lista de operadores esta vacia en estos momentos'});
         }
         return list;
     }
