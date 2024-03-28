@@ -57,9 +57,10 @@ export class GruaService {
             grua.noPermiso = dto.noPermiso ?? grua.noPermiso;
             grua.aseguradora = dto.aseguradora ?? grua.aseguradora;
             grua.noPoliza = dto.noPoliza ?? grua.noPoliza;
-            grua.año = dto.año ?? grua.año;
+            grua.ano = dto.ano ?? grua.ano;
             grua.kmSalida = dto.kmSalida ?? grua.kmSalida;
             grua.kmEntrada = dto.kmEntrada ?? grua.kmEntrada;
+            grua.estatus = dto.estatus ?? grua.estatus;
 
             //operador.estatus = dto.estatus ?? operador.estatus;
             

@@ -1,12 +1,15 @@
+import { GruaEstatusDto } from "./gruaEstatusDto";
+
 export class GruaDto{
     placa: string;
     serie: string;
     noPermiso: string;
     aseguradora: string;
     noPoliza:string;
-    año:number;
+    ano:number;
     kmSalida: number;
-    kmEntrada: string;
+    kmEntrada: number;
+    estatus:GruaEstatusDto;
 
 
 

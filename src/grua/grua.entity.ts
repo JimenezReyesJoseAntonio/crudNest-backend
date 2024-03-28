@@ -1,4 +1,5 @@
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { GruaEstatusEntity } from "./gruaEstatus.entity";
 
 @Entity({name:'grua'})
 export class GruaEntity{
@@ -22,17 +23,16 @@ export class GruaEntity{
     noPoliza:string;
 
     @Column({ type: 'int', nullable: false })
-    año:number;
+    ano:number;
 
     @Column({type: 'int', nullable: false})
     kmSalida: number;
 
-    @Column({type: 'varchar',length: 10, nullable: false})
-    kmEntrada: string;
+    @Column({type: 'int', nullable: false})
+    kmEntrada: number;
 
+    @ManyToOne(type => GruaEstatusEntity, { eager: true })// eager: true  carga automáticamente la relación
+    @JoinColumn({ name: 'estatus_id' })
+    estatus: GruaEstatusEntity;
     
-
-
-
-
 }
