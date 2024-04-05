@@ -6,14 +6,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { DB_DATABASE, DB_HOST, DB_PASSWORD, DB_PORT, DB_USER } from './config/constants';
 import { ProductoModule } from './producto/producto.module';
 
-import { UsuarioModule } from './usuario/usuario.module';
-import { RolModule } from './rol/rol.module';
-import { AuthModule } from './auth/auth.module';
-import { OperadorModule } from './operador/operador.module';
-import { GruaModule } from './grua/grua.module';
-import { VehiculoModule } from './vehiculo/vehiculo.module';
-
-
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -34,16 +26,8 @@ import { VehiculoModule } from './vehiculo/vehiculo.module';
         logging:false
       }),
       inject: [ConfigService],
-
-    }), 
-    ProductoModule,
-    UsuarioModule,
-    RolModule,
-    AuthModule,
-    OperadorModule,
-    GruaModule,
-    VehiculoModule,
- 
+    }),
+    ProductoModule
   ],
   controllers: [AppController],
   providers: [AppService],
