@@ -8,4 +8,8 @@ export class VehiculoEntity{
 
     @Column({type: 'varchar',length: 20, nullable: false,unique: true})
     placa: string;
+
+
+    @Column({type: 'varchar',length: 20, nullable: false})
+    marca: string;
 }
