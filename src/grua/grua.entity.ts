@@ -10,16 +10,16 @@ export class GruaEntity{
     @Column({type: 'varchar',length: 20, nullable: false,unique: true})
     placa: string;
 
-    @Column({type: 'varchar',length: 20, nullable: false,unique: true})
+    @Column({type: 'varchar',length: 30, nullable: false,unique: true})
     serie: string;
 
-    @Column({type: 'varchar',length: 20, nullable: false,unique: true})
+    @Column({type: 'varchar',length: 30, nullable: false,unique: true})
     noPermiso: string;
 
-    @Column({type: 'varchar',length: 20,unique: true})
+    @Column({type: 'varchar',length: 30})
     aseguradora: string;
 
-    @Column({type: 'varchar',length: 20, unique: true})
+    @Column({type: 'varchar',length: 30, unique: true})
     noPoliza:string;
 
     @Column({ type: 'int', nullable: false })
