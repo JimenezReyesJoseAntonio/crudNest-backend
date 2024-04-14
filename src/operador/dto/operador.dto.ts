@@ -10,9 +10,7 @@ curp:string;
 nss?:string;
 direccion: string;
 codigoPostal: number;
-puesto: string;
 licencia: string;
-residencia: string;
 estatus:EstatusDto;
 
 }

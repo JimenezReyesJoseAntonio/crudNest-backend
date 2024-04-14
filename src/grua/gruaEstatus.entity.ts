@@ -7,7 +7,9 @@ export class GruaEstatusEntity {
 
     @Column({ type: 'varchar', length: 20, nullable: false })
     descripcion: string;
-
+    
+    @Column({type: 'int', nullable: false})
+    eliminado: number;
     
 
 }

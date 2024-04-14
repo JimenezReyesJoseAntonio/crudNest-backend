@@ -8,4 +8,9 @@ export class EstatusEntity {
     @Column({ type: 'varchar', length: 20, nullable: false })
     descripcion: string;
 
+    @Column({type: 'int', nullable: false})
+    eliminado: number;
+
+
+
 }

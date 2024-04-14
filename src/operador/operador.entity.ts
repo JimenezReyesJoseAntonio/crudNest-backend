@@ -34,14 +34,8 @@ export class OperadorEntity{
     @Column({type: 'int', nullable: false})
     codigoPostal: number;
 
-    @Column({type: 'varchar',length: 10, nullable: false})
-    puesto: string;
-
     @Column({type: 'varchar',length: 20, nullable: false,unique: true})
     licencia: string;
-
-    @Column({type: 'varchar',length: 20, nullable: false})
-    residencia: string;
 
 
 

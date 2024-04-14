@@ -33,20 +33,57 @@ export class OperadorService {
     }
 
     async create(dto: OperadorDto): Promise<any> {
-        try {
-            const operador = this.operadorRepository.create(dto);
-            console.log(operador.nombre);
-            await this.operadorRepository.save(operador);
-            return {message: 'operador registrado'};
-        } catch (error) {
-            if (error.code === 'ER_DUP_ENTRY') { // Este código de error es específico de MySQL
-                throw new ConflictException({message: 'Datos duplicados con otro operador, operador no creado'});
-            } else {
-                // Maneja otros errores aquí
-                throw error;
-            }
+
+           // Verificar si el operador ya existe por RFC, número de teléfono o NSS
+    const exists = await this.operadorRepository.findOne({
+        where: [
+            { numTelefono: dto.numTelefono },
+            { rfc: dto.rfc },
+            { curp: dto.curp},
+            { nss: dto.nss },
+            {licencia: dto.licencia}
+        ]
+    });
+
+    if (exists) {
+        // Determinar cuál campo está duplicado y lanzar la excepción correspondiente
+        if (exists.rfc === dto.rfc) {
+            throw new BadRequestException({ message: 'El operador con este RFC ya existe' });
+        } else if (exists.numTelefono === dto.numTelefono) {
+            throw new BadRequestException({ message: 'El operador con este número de teléfono ya existe' });
+        } else if (exists.nss === dto.nss) {
+            throw new BadRequestException({ message: 'El operador con este NSS ya existe' });
+        } else if (exists.curp === dto.curp){
+            throw new BadRequestException({ message: 'El operador con este CURP ya existe' });
+        } else if (exists.licencia === dto.licencia){
+            throw new BadRequestException({ message: 'El operador con esta licencia ya existe' });
         }
     }
+        const connection = this.operadorRepository.manager.connection;
+        const queryRunner = connection.createQueryRunner();
+      
+        await queryRunner.connect();
+        await queryRunner.startTransaction();
+      
+        try {
+          const operador = this.operadorRepository.create(dto);
+          await queryRunner.manager.save(operador); // Guarda el operador en la transacción
+          await queryRunner.commitTransaction(); // Confirma la transacción
+          return { message: 'operador registrado' };
+        } catch (error) {
+          await queryRunner.rollbackTransaction(); // Deshace la transacción si hay un error
+          if (error.code === 'ER_DUP_ENTRY') {
+            throw new ConflictException({
+              message: 'Datos duplicados con otro operador, operador no creado',
+            });
+          } else {
+            throw error;
+          }
+        } finally {
+          await queryRunner.release(); // Libera el queryRunner
+        }
+      }
+      
 
         
     async update(id: number, dto: OperadorDto): Promise<any> {
@@ -65,9 +102,7 @@ export class OperadorService {
             operador.nss = dto.nss ?? operador.nss;
             operador.direccion = dto.direccion ?? operador.direccion;
             operador.codigoPostal = dto.codigoPostal ?? operador.codigoPostal;
-            operador.puesto = dto.puesto ?? operador.puesto;
             operador.licencia = dto.licencia ?? operador.licencia;
-            operador.residencia = dto.residencia ?? operador.residencia;
             operador.estatus = dto.estatus ?? operador.estatus;
             
             await this.operadorRepository.save(operador);
