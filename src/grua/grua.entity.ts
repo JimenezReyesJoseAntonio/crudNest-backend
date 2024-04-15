@@ -26,10 +26,8 @@ export class GruaEntity{
     ano:number;
 
     @Column({type: 'int', nullable: false})
-    kmSalida: number;
+    kilometraje: number;
 
-    @Column({type: 'int', nullable: false})
-    kmEntrada: number;
 
     @ManyToOne(type => GruaEstatusEntity, { eager: true })// eager: true  carga automáticamente la relación
     @JoinColumn({ name: 'estatus_id' })

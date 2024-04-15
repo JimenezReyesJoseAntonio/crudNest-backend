@@ -7,8 +7,7 @@ export class GruaDto{
     aseguradora: string;
     noPoliza:string;
     ano:number;
-    kmSalida: number;
-    kmEntrada: number;
+    kilometraje: number;
     estatus:GruaEstatusDto;
 
 

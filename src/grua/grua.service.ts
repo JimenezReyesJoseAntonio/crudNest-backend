@@ -1,4 +1,4 @@
-import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { GruaEntity } from './grua.entity';
 import { GruaRepository } from './grua.repository';
@@ -29,6 +29,31 @@ export class GruaService {
 
 
     async create(dto: GruaDto): Promise<any> {
+
+        
+           // Verificar si el operador ya existe por RFC, número de teléfono o NSS
+    const exists = await this.gruaRepository.findOne({
+        where: [
+            { placa: dto.placa },
+            { serie: dto.serie },
+            { noPermiso: dto.noPermiso},
+            { noPoliza: dto.noPoliza }
+        ]
+    });
+
+    if (exists) {
+        // Determinar cuál campo está duplicado y lanzar la excepción correspondiente
+        if (exists.placa === dto.placa) {
+            throw new BadRequestException({ message: 'La grúa con esta placa ya existe' });
+        } else if (exists.serie === dto.serie) {
+            throw new BadRequestException({ message: 'La grúa con este número de serie ya existe' });
+        } else if (exists.noPermiso === dto.noPermiso) {
+            throw new BadRequestException({ message: 'La grúa con este No Permiso ya existe' });
+        } else if (exists.noPoliza === dto.noPoliza){
+            throw new BadRequestException({ message: 'La grúa con este No Poliza ya existe' });
+        } 
+    }
+
         try {
             const grua = this.gruaRepository.create(dto);
             console.log(grua.noEco);
@@ -58,8 +83,7 @@ export class GruaService {
             grua.aseguradora = dto.aseguradora ?? grua.aseguradora;
             grua.noPoliza = dto.noPoliza ?? grua.noPoliza;
             grua.ano = dto.ano ?? grua.ano;
-            grua.kmSalida = dto.kmSalida ?? grua.kmSalida;
-            grua.kmEntrada = dto.kmEntrada ?? grua.kmEntrada;
+            grua.kilometraje = dto.kilometraje ?? grua.kilometraje;
             grua.estatus = dto.estatus ?? grua.estatus;
 
             //operador.estatus = dto.estatus ?? operador.estatus;
