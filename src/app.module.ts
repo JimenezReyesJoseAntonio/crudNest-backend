@@ -11,6 +11,8 @@ import { AuthModule } from './auth/auth.module';
 import { OperadorModule } from './operador/operador.module';
 import { GruaModule } from './grua/grua.module';
 import { VehiculoModule } from './vehiculo/vehiculo.module';
+import { ClienteModule } from './cliente/cliente.module';
+import { ClienteTipoModule } from './cliente-tipo/cliente-tipo.module';
 
 @Module({
   imports: [
@@ -33,6 +35,7 @@ import { VehiculoModule } from './vehiculo/vehiculo.module';
       }),
       inject: [ConfigService],
     }), 
+    
     ProductoModule,
     UsuarioModule,
     RolModule,
@@ -40,6 +43,8 @@ import { VehiculoModule } from './vehiculo/vehiculo.module';
     OperadorModule,
     GruaModule,
     VehiculoModule,
+    ClienteModule,
+    ClienteTipoModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -29,8 +29,6 @@ export class GruaService {
 
 
     async create(dto: GruaDto): Promise<any> {
-
-        
            // Verificar si el operador ya existe por RFC, número de teléfono o NSS
     const exists = await this.gruaRepository.findOne({
         where: [
@@ -42,16 +40,20 @@ export class GruaService {
     });
 
     if (exists) {
-        // Determinar cuál campo está duplicado y lanzar la excepción correspondiente
+        let mensaje = 'La grua con ';
         if (exists.placa === dto.placa) {
-            throw new BadRequestException({ message: 'La grúa con esta placa ya existe' });
-        } else if (exists.serie === dto.serie) {
-            throw new BadRequestException({ message: 'La grúa con este número de serie ya existe' });
-        } else if (exists.noPermiso === dto.noPermiso) {
-            throw new BadRequestException({ message: 'La grúa con este No Permiso ya existe' });
-        } else if (exists.noPoliza === dto.noPoliza){
-            throw new BadRequestException({ message: 'La grúa con este No Poliza ya existe' });
-        } 
+          mensaje += ` Placa: ${dto.placa}`;
+        }
+        if (exists.serie === dto.serie) {
+          mensaje += ` Serie: ${dto.serie}`;
+        }
+        if (exists.noPermiso === dto.noPermiso) {
+          mensaje += ` No Permiso: ${dto.noPermiso}`;
+        }
+        if (exists.noPoliza === dto.noPoliza) {
+          mensaje += ` No Poliza: ${dto.noPoliza}`;
+        }
+        throw new ConflictException({ message: mensaje + ' ya existe' });
     }
 
         try {
@@ -76,6 +78,33 @@ export class GruaService {
             if (!grua) {
                 throw new NotFoundException({ message: 'No se encontró la grua' });
             }
+
+            // Verificar si algún dato del DTO está duplicado con otro operador
+      const duplicados = await this.gruaRepository.findOne({
+        where: [
+            { placa: dto.placa },
+            { serie: dto.serie },
+            { noPermiso: dto.noPermiso},
+            { noPoliza: dto.noPoliza }
+        ],
+      });
+
+      if (duplicados && duplicados.noEco !== grua.noEco) {
+        let mensaje = 'La grua con ';
+        if (duplicados.placa === dto.placa) {
+          mensaje += ` Placa: ${dto.placa}`;
+        }
+        if (duplicados.serie === dto.serie) {
+          mensaje += ` Serie: ${dto.serie}`;
+        }
+        if (duplicados.noPermiso === dto.noPermiso) {
+          mensaje += ` No Permiso: ${dto.noPermiso}`;
+        }
+        if (duplicados.noPoliza === dto.noPoliza) {
+          mensaje += ` No Poliza: ${dto.noPoliza}`;
+        }
+        throw new ConflictException({ message: mensaje + ' ya existe' });
+      }
     
             grua.placa = dto.placa ?? grua.placa;
             grua.serie = dto.serie ?? grua.serie;
@@ -86,7 +115,6 @@ export class GruaService {
             grua.kilometraje = dto.kilometraje ?? grua.kilometraje;
             grua.estatus = dto.estatus ?? grua.estatus;
 
-            //operador.estatus = dto.estatus ?? operador.estatus;
             
             await this.gruaRepository.save(grua);
             

@@ -1,46 +1,46 @@
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from '@nestjs/common';
-import { VehiculoService } from './vehiculo.service';
-import { VehiculoDto } from './dto/vehiculo.dto';
+import { ClienteTipoService } from './cliente-tipo.service';
+import { ClienteTipoDto } from './dto/cliente-tipo.dto';
 
-@Controller('vehiculo')
-export class VehiculoController {
+@Controller('cliente-tipo')
+export class ClienteTipoController {
+
     constructor(
-        private readonly vehiculoService: VehiculoService
+        private readonly clienteTipoService: ClienteTipoService
     ){}
+
 
     //@RolDecorator([RolNombre.ADMIN,RolNombre.USER])
     //@UseGuards(JwtAuthGuard, RolesGuard)
     @Get()
     async getAll() {
         
-        return await this.vehiculoService.getAll();
+        return await this.clienteTipoService.getAll();
     }
 
    // @UseGuards(JwtAuthGuard, RolesGuard)
     @Get(':id')
     async getOne(@Param('id', ParseIntPipe) id: number) {
-        return await this.vehiculoService.findById(id);
+        return await this.clienteTipoService.findById(id);
     }
 
     //@UseGuards(JwtAuthGuard, RolesGuard) 
     @Post()
-    async create(@Body() dto: VehiculoDto) {
+    async create(@Body() dto: ClienteTipoDto) {
         console.log('de dto'+dto);
-        return await this.vehiculoService.create(dto);
+        return await this.clienteTipoService.create(dto);
     }
     
    // @UseGuards(JwtAuthGuard, RolesGuard)
     @Put(':id')
-    async update(@Param('id', ParseIntPipe) id: number, @Body() dto: VehiculoDto) {
-        return await this.vehiculoService.update(id, dto);
+    async update(@Param('id', ParseIntPipe) id: number, @Body() dto: ClienteTipoDto) {
+        return await this.clienteTipoService.update(id, dto);
     }
 
 
     //@UseGuards(JwtAuthGuard, RolesGuard)
     @Delete(':id')
     async delete(@Param('id', ParseIntPipe) id: number){
-        return await this.vehiculoService.delete(id)
+        return await this.clienteTipoService.delete(id)
     }
-
-
 }
