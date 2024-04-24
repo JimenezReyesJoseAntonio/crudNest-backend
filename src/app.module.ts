@@ -13,6 +13,7 @@ import { GruaModule } from './grua/grua.module';
 import { VehiculoModule } from './vehiculo/vehiculo.module';
 import { ClienteModule } from './cliente/cliente.module';
 import { ClienteTipoModule } from './cliente-tipo/cliente-tipo.module';
+import { ServicioModule } from './servicio/servicio.module';
 
 @Module({
   imports: [
@@ -45,6 +46,7 @@ import { ClienteTipoModule } from './cliente-tipo/cliente-tipo.module';
     VehiculoModule,
     ClienteModule,
     ClienteTipoModule,
+    ServicioModule,
   ],
   controllers: [AppController],
   providers: [AppService],
