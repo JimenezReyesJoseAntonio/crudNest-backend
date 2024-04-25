@@ -12,5 +12,6 @@ direccion: string;
 codigoPostal: number;
 licencia: string;
 estatus:EstatusDto;
+eliminado: number;
 
 }

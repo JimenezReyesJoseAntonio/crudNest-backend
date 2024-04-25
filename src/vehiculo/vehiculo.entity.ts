@@ -31,7 +31,8 @@ export class VehiculoEntity{
     @ManyToOne(() => ClienteEntity, cliente => cliente.vehiculos, { eager: true })
     cliente: ClienteEntity;
 
-    
+    @Column({type: 'int', nullable: false})
+    eliminado: number;
     
 
 }

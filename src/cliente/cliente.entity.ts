@@ -19,5 +19,7 @@ export class ClienteEntity{
     @JoinColumn({ name: 'clienteTipo_id' })
     clienteTipo: ClienteTipoEntity;
 
+    @Column({type: 'int', nullable: false})
+    eliminado: number;
 
 }

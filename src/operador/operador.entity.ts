@@ -43,7 +43,8 @@ export class OperadorEntity{
     @JoinColumn({ name: 'estatus_id' })
     estatus: EstatusEntity;
 
-
+    @Column({type: 'int', nullable: false})
+    eliminado: number;
 
 
 }

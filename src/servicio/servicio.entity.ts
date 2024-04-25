@@ -51,7 +51,8 @@ export class ServicioEntity{
     usuario: UsuarioEntity;
 
     
-
+    @Column({type: 'int', nullable: false})
+    eliminado: number;
     
 
 }

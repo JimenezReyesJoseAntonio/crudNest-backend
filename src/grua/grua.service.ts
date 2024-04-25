@@ -132,9 +132,14 @@ export class GruaService {
 
     async delete(id: number): Promise<any> {
         const grua = await this.findById(id);
-        await this.gruaRepository.delete(grua);
-        return {message: 'grua eliminado'};
-
+        if (!grua) {
+            throw new NotFoundException({ message: 'No se encontró la grua' });
+        }
+    
+        grua.eliminado = 1; // Marcar como eliminada
+        await this.gruaRepository.save(grua);
+    
+        return { message: 'Grua eliminada' };
     }
 
 

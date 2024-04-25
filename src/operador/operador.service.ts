@@ -166,7 +166,14 @@ export class OperadorService {
 
   async delete(id: number): Promise<any> {
     const operador = await this.findById(id);
-    await this.operadorRepository.delete(operador);
-    return { message: 'operador eliminado' };
-  }
+    if (!operador) {
+        throw new NotFoundException({ message: 'No se encontró el operador' });
+    }
+
+    operador.eliminado = 1; // Marcar como eliminada
+    await this.operadorRepository.save(operador);
+
+    return { message: 'Operador eliminado' };
+}
+
 }

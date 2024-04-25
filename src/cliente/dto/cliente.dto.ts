@@ -6,6 +6,7 @@ export class ClienteDto{
     numTelefono: string;
     vehiculos: VehiculoEntity[];
     clienteTipo: ClienteTipoDto;
-    
+    eliminado: number;
+
 
 }

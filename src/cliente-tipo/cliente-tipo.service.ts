@@ -79,10 +79,15 @@ export class ClienteTipoService {
 
     async delete(id: number): Promise<any> {
         const clienteTipo = await this.findById(id);
-        await this.clienteTipoRepository.delete(clienteTipo);
-        return {message: 'tipo cliente eliminado'};
+        if (!clienteTipo) {
+          throw new NotFoundException({ message: 'No se encontró el tipo de cliente' });
+        }
     
-    }
+        clienteTipo.eliminado = 1; // Marcar como eliminada
+        await this.clienteTipoRepository.save(clienteTipo);
+    
+        return { message: 'Tipo cliente eliminado' };
+      }
     
 
 }

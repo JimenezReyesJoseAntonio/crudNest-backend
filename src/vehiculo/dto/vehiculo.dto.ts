@@ -9,5 +9,6 @@ export class VehiculoDto{
     color: string;
     ano:number;
     cliente: ClienteDto;
+    eliminado: number;
 
 }

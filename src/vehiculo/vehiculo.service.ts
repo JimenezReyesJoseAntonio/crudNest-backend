@@ -80,10 +80,15 @@ export class VehiculoService {
     }
     
     async delete(id: number): Promise<any> {
-        const cliente = await this.findById(id);
-        await this.vehiculoRepository.delete(cliente);
-        return {message: 'vehiculo eliminado'};
+        const vehiculo = await this.findById(id);
+        if (!vehiculo) {
+            throw new NotFoundException({ message: 'No se encontró el vehiculo' });
+        }
     
+        vehiculo.eliminado = 1; // Marcar como eliminada
+        await this.vehiculoRepository.save(vehiculo);
+    
+        return { message: 'vehiculo eliminado' };
     }
 
    

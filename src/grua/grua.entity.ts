@@ -32,5 +32,8 @@ export class GruaEntity{
     @ManyToOne(type => GruaEstatusEntity, { eager: true })// eager: true  carga automáticamente la relación
     @JoinColumn({ name: 'estatus_id' })
     estatus: GruaEstatusEntity;
+
+    @Column({type: 'int', nullable: false})
+    eliminado: number;
     
 }

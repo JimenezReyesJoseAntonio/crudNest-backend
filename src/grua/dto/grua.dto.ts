@@ -9,6 +9,7 @@ export class GruaDto{
     ano:number;
     kilometraje: number;
     estatus:GruaEstatusDto;
+    eliminado: number;
 
 
 

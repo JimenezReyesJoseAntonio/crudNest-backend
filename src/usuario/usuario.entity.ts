@@ -19,6 +19,9 @@ export class UsuarioEntity{
     @Column({type:'varchar',nullable:false})
     password: string;
 
+    @Column({type: 'int', nullable: false})
+    eliminado: number;
+
     @ManyToMany(type => RolEntity, rol => rol.usuarios,{eager:true})
     @JoinTable({
         name:'usuarios_rol',
