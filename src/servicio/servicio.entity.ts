@@ -10,7 +10,7 @@ export class ServicioEntity{
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({type: 'varchar',length: 20, nullable: false})
+    @Column({type: 'varchar',length: 20, nullable: false,unique:true})
     folioServicio: string;
     
     @Column({type: 'date', nullable: false})
