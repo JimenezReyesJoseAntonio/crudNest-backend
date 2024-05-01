@@ -36,7 +36,7 @@ export class VehiculoService {
             console.log(vehiculo.marca);
    
             await this.vehiculoRepository.save(vehiculo);
-            return {message: 'Vehiculo registrado'};
+            return vehiculo.id;
         } catch (error) {
             if (error.code === 'ER_DUP_ENTRY') { // Este código de error es específico de MySQL
                 throw new ConflictException({message: error.message});

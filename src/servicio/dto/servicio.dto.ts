@@ -1,4 +1,5 @@
 import { ClienteDto } from "src/cliente/dto/cliente.dto";
+import { GruaDto } from "src/grua/dto/grua.dto";
 import { OperadorDto } from "src/operador/dto/operador.dto";
 import { CreateUsuarioDto } from "src/usuario/dto/create-usuario.dto";
 import { VehiculoDto } from "src/vehiculo/dto/vehiculo.dto";
@@ -15,6 +16,7 @@ export class ServicioDto{
     cliente: ClienteDto;
     vehiculo: VehiculoDto;
     operador: OperadorDto;
+    grua: GruaDto;
     usuario:CreateUsuarioDto ;
     eliminado: number;
     //falta grua

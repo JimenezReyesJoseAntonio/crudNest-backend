@@ -35,12 +35,21 @@ export class ClienteService {
 
   async create(dto: ClienteDto): Promise<any> {
     try {
+      console.log('ClienteDto a enviar:', dto);
+
       const cliente = this.clienteRepository.create(dto);
-      console.log(cliente.id);
-      console.log(cliente.clienteTipo.nombreCliente);
+      
 
       await this.clienteRepository.save(cliente);
-      return { message: 'Cliente registrado' };
+      console.log('el cliente'+cliente);
+      console.log('numTelefono:', cliente.numTelefono); // Accede a la propiedad numTelefono del objeto cliente
+      console.log('clienteTipo:', cliente.clienteTipo); // Accede a la propiedad clienteTipo del objeto cliente
+      console.log('eliminado:', cliente.eliminado); // Accede a la propiedad eliminado del objeto cliente
+      console.log('nombre cliente', dto.clienteTipo.nombreCliente);
+
+     // console.log('cliente id'+cliente.id);
+      //console.log('nombre cliente'+cliente.clienteTipo.nombreCliente);
+      return cliente.id; //Devuelve el cliente creado para poder crear el vehiculo
     } catch (error) {
       if (error.code === 'ER_DUP_ENTRY') {
         // Este código de error es específico de MySQL

@@ -1,4 +1,5 @@
 import { ClienteEntity } from "src/cliente/cliente.entity";
+import { GruaEntity } from "src/grua/grua.entity";
 import { OperadorEntity } from "src/operador/operador.entity";
 import { UsuarioEntity } from "src/usuario/usuario.entity";
 import { VehiculoEntity } from "src/vehiculo/vehiculo.entity";
@@ -45,6 +46,10 @@ export class ServicioEntity{
     @ManyToOne(() => OperadorEntity)
     @JoinColumn({ name: 'operador_id' })
     operador: OperadorEntity;
+
+    @ManyToOne(() => GruaEntity)
+    @JoinColumn({ name: 'grua_id' })
+    grua: GruaEntity;
 
     @ManyToOne(() => UsuarioEntity)
     @JoinColumn({ name: 'usuario_id' })
