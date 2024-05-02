@@ -149,7 +149,6 @@ export class OperadorService {
       operador.direccion = dto.direccion ?? operador.direccion;
       operador.codigoPostal = dto.codigoPostal ?? operador.codigoPostal;
       operador.licencia = dto.licencia ?? operador.licencia;
-      operador.estatus = dto.estatus ?? operador.estatus;
 
       await this.operadorRepository.save(operador);
 

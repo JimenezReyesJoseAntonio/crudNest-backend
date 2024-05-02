@@ -8,8 +8,8 @@ import { EstatusController } from './estatus.controller';
 import { EstatusEntity } from './estatus.entity';
 
 @Module({
-  imports:[TypeOrmModule.forFeature([OperadorEntity,EstatusEntity])],
-  providers: [OperadorService,EstatusService],
-  controllers: [OperadorController,EstatusController]
+  imports:[TypeOrmModule.forFeature([OperadorEntity])],
+  providers: [OperadorService],
+  controllers: [OperadorController]
 })
 export class OperadorModule {}

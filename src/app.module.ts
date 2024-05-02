@@ -14,6 +14,7 @@ import { VehiculoModule } from './vehiculo/vehiculo.module';
 import { ClienteModule } from './cliente/cliente.module';
 import { ClienteTipoModule } from './cliente-tipo/cliente-tipo.module';
 import { ServicioModule } from './servicio/servicio.module';
+import { EstatusOperadorModule } from './estatus-operador/estatus-operador.module';
 
 @Module({
   imports: [
@@ -47,6 +48,7 @@ import { ServicioModule } from './servicio/servicio.module';
     ClienteModule,
     ClienteTipoModule,
     ServicioModule,
+    EstatusOperadorModule,
   ],
   controllers: [AppController],
   providers: [AppService],

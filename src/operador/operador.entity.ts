@@ -1,5 +1,6 @@
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { EstatusEntity } from "./estatus.entity";
+import { EstatusOperadorEntity } from "src/estatus-operador/estatus-operador.entity";
 
 @Entity({name:'operador'})
 export class OperadorEntity{
@@ -37,11 +38,8 @@ export class OperadorEntity{
     @Column({type: 'varchar',length: 20, nullable: false,unique: true})
     licencia: string;
 
-
-
-    @ManyToOne(type => EstatusEntity, { eager: true })// eager: true  carga automáticamente la relación
-    @JoinColumn({ name: 'estatus_id' })
-    estatus: EstatusEntity;
+    @OneToOne(() => EstatusOperadorEntity, estatus => estatus.operador)
+    estatusOperador: EstatusOperadorEntity;
 
     @Column({type: 'int', nullable: false})
     eliminado: number;
