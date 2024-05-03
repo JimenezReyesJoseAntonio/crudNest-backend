@@ -84,7 +84,7 @@ export class OperadorService {
       const operador = this.operadorRepository.create(dto);
       await queryRunner.manager.save(operador); // Guarda el operador en la transacción
       await queryRunner.commitTransaction(); // Confirma la transacción
-      return { message: 'operador registrado' };
+      return operador.id;
     } catch (error) {
       await queryRunner.rollbackTransaction(); // Deshace la transacción si hay un error
       if (error.code === 'ER_DUP_ENTRY') {

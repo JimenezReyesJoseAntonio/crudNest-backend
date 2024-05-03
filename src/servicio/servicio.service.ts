@@ -37,7 +37,7 @@ export class ServicioService {
       const servicio = this.serviceRepository.create(dto);
       console.log(servicio.folioServicio);
       await this.serviceRepository.save(servicio);
-      return servicio.id;// valor que ocuparemos para el folio del servicio
+      return servicio;// valor que ocuparemos para el folio del servicio
     } catch (error) {
       if (error.code === 'ER_DUP_ENTRY') {
         // Este código de error es específico de MySQL

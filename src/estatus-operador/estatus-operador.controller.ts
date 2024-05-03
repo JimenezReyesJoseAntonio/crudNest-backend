@@ -14,8 +14,9 @@ export class EstatusOperadorController {
       await this.estatusOperadorService.asignarEstatusOperador(idOperador, estado);
     }
   
+    //mandar un solo dato debemos usar el siguiente formato json para que angular no tenga problema
     @Get(':idOperador')
-    async obtenerEstatusOperador(@Param('idOperador', ParseIntPipe) idOperador: number): Promise<string | null> {
+    async obtenerEstatusOperador(@Param('idOperador', ParseIntPipe) idOperador: number): Promise<{ nombreEstatus: string } | null> {
       return this.estatusOperadorService.obtenerEstatusOperador(idOperador);
     }
 
