@@ -60,7 +60,7 @@ export class GruaService {
             const grua = this.gruaRepository.create(dto);
             console.log(grua.noEco);
             await this.gruaRepository.save(grua);
-            return {message: 'Grua registrada'};
+            return grua.noEco;
         } catch (error) {
             if (error.code === 'ER_DUP_ENTRY') { // Este código de error es específico de MySQL
                 throw new ConflictException({message: 'Datos duplicados con otra grua, grua no creada'});
@@ -113,7 +113,6 @@ export class GruaService {
             grua.noPoliza = dto.noPoliza ?? grua.noPoliza;
             grua.ano = dto.ano ?? grua.ano;
             grua.kilometraje = dto.kilometraje ?? grua.kilometraje;
-            grua.estatus = dto.estatus ?? grua.estatus;
 
             
             await this.gruaRepository.save(grua);

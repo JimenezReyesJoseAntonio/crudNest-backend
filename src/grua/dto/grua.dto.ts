@@ -8,7 +8,6 @@ export class GruaDto{
     noPoliza:string;
     ano:number;
     kilometraje: number;
-    estatus:GruaEstatusDto;
     eliminado: number;
 
 

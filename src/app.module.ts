@@ -15,6 +15,7 @@ import { ClienteModule } from './cliente/cliente.module';
 import { ClienteTipoModule } from './cliente-tipo/cliente-tipo.module';
 import { ServicioModule } from './servicio/servicio.module';
 import { EstatusOperadorModule } from './estatus-operador/estatus-operador.module';
+import { EstatusGruaModule } from './estatus-grua/estatus-grua.module';
 
 @Module({
   imports: [
@@ -49,6 +50,7 @@ import { EstatusOperadorModule } from './estatus-operador/estatus-operador.modul
     ClienteTipoModule,
     ServicioModule,
     EstatusOperadorModule,
+    EstatusGruaModule,
   ],
   controllers: [AppController],
   providers: [AppService],

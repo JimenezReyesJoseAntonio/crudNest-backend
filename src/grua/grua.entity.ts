@@ -1,5 +1,6 @@
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { GruaEstatusEntity } from "./gruaEstatus.entity";
+import { EstatusGruaEntity } from "src/estatus-grua/estatus-grua.entity";
 
 @Entity({name:'grua'})
 export class GruaEntity{
@@ -28,10 +29,8 @@ export class GruaEntity{
     @Column({type: 'int', nullable: false})
     kilometraje: number;
 
-
-    @ManyToOne(type => GruaEstatusEntity, { eager: true })// eager: true  carga automáticamente la relación
-    @JoinColumn({ name: 'estatus_id' })
-    estatus: GruaEstatusEntity;
+    @OneToOne(() => EstatusGruaEntity, estatus => estatus.grua)
+    estatusGrua: EstatusGruaEntity;
 
     @Column({type: 'int', nullable: false})
     eliminado: number;
