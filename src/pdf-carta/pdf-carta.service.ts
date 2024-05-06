@@ -11,10 +11,10 @@ export class PdfCartaService {
 
     async getDataById(id: number): Promise<any> {
         const service = await this.serviceService.findById(id); // Utiliza el método findById
-        if(!service) {
+        if (!service) {
             throw new Error('No se encontró el servicio con el ID especificado');
         }
-      return service; // Retorna el objeto ServicioEntity
+        return service; // Retorna el objeto ServicioEntity
     }
 
 
@@ -117,7 +117,7 @@ export class PdfCartaService {
                 bufferPages: true,
                 autoFirstPage: false,
             });
-    
+
             // Encabezado
             doc.addPage();
             doc.image(join(process.cwd(), 'uploads/GVlogo.png'), 50, 50, { width: 100 });
@@ -127,11 +127,11 @@ export class PdfCartaService {
             const headerRightTextWidth = doc.widthOfString(headerRightText);
             doc.text(headerRightText, doc.page.width - headerRightTextWidth - 90, 80);
             doc.x = 50; // Regresar el puntero a la izquierda
-    
+
             // Texto normal para el encabezado principal
             doc.font('Helvetica').fontSize(12).fillColor('black');
             doc.moveDown(5); // Espacio después de la imagen del encabezado
-    
+
             // Datos adicionales después del encabezado
             const datosEmisor = [
                 '       Datos del Emisor',
@@ -141,7 +141,7 @@ export class PdfCartaService {
                 'Tipo de Comprobante: T - Traslado',
             ];
             datosEmisor.forEach((line) => doc.text(line, { bulletRadius: 2, bulletIndent: 10 }));
-    
+
             const datosCliente = [
                 'Datos del Cliente',
                 'PUBLICO EN GENERAL',
@@ -160,17 +160,38 @@ export class PdfCartaService {
             doc.y = 300; // Regresar el puntero a la izquierda
 
             // Cuerpo (Tabla)
-            doc.text('Tabla de Contenido', 50, doc.y); // La posición Y después del texto anterior
+            //doc.text('Tabla de Contenido', 50, doc.y); // La posición Y después del texto anterior
             const table = {
-                title: 'Tabla ejemplo',
-                subtitle: 'Esta es una tabla de ejemplo',
-                headers: ['id', 'nombre'],
+                headers: ['', '', 'Datos del vehiculo', '', '', ''],
                 rows: [
-                    [servicio.folioServicio ? servicio.folioServicio : 'Sin nombre', servicio.operador.nombre ? servicio.operador.nombre : 'sin nombre'],
+                    ['Sinistro', ' ', 'Marca', servicio.vehiculo.marca ? servicio.vehiculo.marca : 'Sin nombre', 'Placas', servicio.vehiculo.placas ? servicio.vehiculo.placas : 'sin nombre'],
+                    ['Poliza', '', 'Modelo', servicio.vehiculo.modelo ? servicio.vehiculo.modelo : 'Sin nombre', 'Color', servicio.vehiculo.color ? servicio.vehiculo.color : 'Sin nombre'],
+                    ['Serie', servicio.vehiculo.serie ? servicio.vehiculo.serie : 'Sin nombre', 'Año', servicio.vehiculo.ano ? servicio.vehiculo.ano : 'Sin nombre']
                 ],
             };
-            doc.table(table, { columnsSize: [150, 350] });
-    
+            doc.table(table, { columnsSize: [75, 100, 75, 75, 75, 75], });
+
+            // Cuerpo (Tabla)
+           // doc.text('Tabla de Contenido', 50, doc.y); // La posición Y después del texto anterior
+            const table2 = {
+                headers: ['', '', 'Datos del operador', '', '', ''],
+                rows: [
+                    ['Tipo', 'Operador ', 'Nombre', servicio.operador.nombre ? servicio.operador.nombre : 'Sin nombre', servicio.operador.apellidoPaterno ? servicio.operador.apellidoPaterno : 'sin nombre', servicio.operador.apellidoMaterno ? servicio.operador.apellidoMaterno : 'sin nombre'],
+                    ['RFC',servicio.operador.rfc ? servicio.operador.rfc : 'Sin nombre' , 'Licencia', servicio.operador.licencia ? servicio.operador.licencia : 'Sin nombre', 'Residencia', 'Oaxaca'],
+                ],
+            };
+            doc.table(table2, { columnsSize: [75, 100, 75, 75, 75, 75], });
+
+            const table3 = {
+                headers: ['', '', 'Datos de la Grúa', '', '', ''],
+                rows: [
+                    ['No. Permiso',servicio.grua.noPermiso ? servicio.grua.noPermiso : 'Sin nombre','','', 'Tipo de transporte','Camión unitario'],
+                    ['Aseguradora',servicio.grua.aseguradora ? servicio.grua.aseguradora  : 'Sin nombre' , 'Poliza', servicio.grua.noPoliza  ? servicio.grua.noPoliza  : 'Sin nombre', 'Placas',servicio.grua.placa  ? servicio.grua.placa  : 'Sin nombre' ],
+                ],
+            };
+
+            doc.table(table3, { columnsSize: [65, 115, 70, 75, 75, 75], });
+            
             // Pie de Página (Footer)
             const footerText = 'Calle Olivos #233 Ex-Hacienda Candiani Santa Cruz Xoxocotlan Oaxaca';
             const footerHeight = doc.heightOfString(footerText);
@@ -179,7 +200,7 @@ export class PdfCartaService {
                 width: doc.page.width - 100,
                 align: 'center',
             });
-    
+
             const buffer = [];
             doc.on('data', buffer.push.bind(buffer));
             doc.on('end', () => {
@@ -188,13 +209,13 @@ export class PdfCartaService {
             });
             doc.end();
         });
-    
+
         return pdfBuffer;
     }
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
 }
