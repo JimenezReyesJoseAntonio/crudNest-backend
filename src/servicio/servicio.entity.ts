@@ -27,7 +27,7 @@ export class ServicioEntity{
     montoCobrado: number;
     
     @Column({type: 'varchar',length: 20, nullable: false})
-    obervaciones: string;
+    observaciones: string;
 
     @Column({type: 'varchar',length: 20, nullable: false})
     ubicacionTermino: string;

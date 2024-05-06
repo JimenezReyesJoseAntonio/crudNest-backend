@@ -10,7 +10,7 @@ export class ServicioDto{
     ubicacionSalida: string;
     ubicacionContacto: string;
     montoCobrado:number;
-    obervaciones:string;
+    observaciones:string;
     ubicacionTermino: string;
     estadoServicio: string;
     cliente: ClienteDto;

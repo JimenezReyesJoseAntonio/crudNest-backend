@@ -16,6 +16,7 @@ import { ClienteTipoModule } from './cliente-tipo/cliente-tipo.module';
 import { ServicioModule } from './servicio/servicio.module';
 import { EstatusOperadorModule } from './estatus-operador/estatus-operador.module';
 import { EstatusGruaModule } from './estatus-grua/estatus-grua.module';
+import { PdfCartaModule } from './pdf-carta/pdf-carta.module';
 
 @Module({
   imports: [
@@ -51,6 +52,7 @@ import { EstatusGruaModule } from './estatus-grua/estatus-grua.module';
     ServicioModule,
     EstatusOperadorModule,
     EstatusGruaModule,
+    PdfCartaModule,
   ],
   controllers: [AppController],
   providers: [AppService],

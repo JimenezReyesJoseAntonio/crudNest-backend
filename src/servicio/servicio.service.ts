@@ -24,6 +24,7 @@ export class ServicioService {
   async findById(id: number): Promise<ServicioEntity | null> {
     const operador = await this.serviceRepository.findOne({
       where: { id: id },
+      relations: ['cliente', 'vehiculo', 'operador', 'grua', 'usuario'], // Cargar las relaciones necesarias
     });
     if (!operador) {
       throw new NotFoundException({ message: 'no existe el servicio' });
