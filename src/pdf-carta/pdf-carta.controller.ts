@@ -10,6 +10,7 @@ export class PdfCartaController {
   async getOne(@Param('id', ParseIntPipe) id: number) {
     return await this.pdfService.getDataById(id);
   }
+  
   @Get('generate/:id')
   async generatePdf(@Param('id') id: number, @Res() res): Promise<void> {
     const data = await this.pdfService.getDataById(id); // Obtiene datos de la base de datos
