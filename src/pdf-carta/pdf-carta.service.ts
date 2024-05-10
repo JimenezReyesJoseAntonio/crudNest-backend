@@ -164,8 +164,8 @@ export class PdfCartaService {
             const table = {
                 headers: ['', '', 'Datos del vehiculo', '', '', ''],
                 rows: [
-                    ['Sinistro', ' ', 'Marca', servicio.vehiculo.marca ? servicio.vehiculo.marca : 'Sin nombre', 'Placas', servicio.vehiculo.placas ? servicio.vehiculo.placas : 'sin nombre'],
-                    ['Poliza', '', 'Modelo', servicio.vehiculo.modelo ? servicio.vehiculo.modelo : 'Sin nombre', 'Color', servicio.vehiculo.color ? servicio.vehiculo.color : 'Sin nombre'],
+                    ['Sinistro', ' ', 'Marca', servicio.vehiculo.marca.nombre ? servicio.vehiculo.marca.nombre : 'Sin nombre', 'Placas', servicio.vehiculo.placas ? servicio.vehiculo.placas : 'sin nombre'],
+                    ['Poliza', '', 'Modelo', servicio.vehiculo.modelo.nombre ? servicio.vehiculo.modelo.nombre : 'Sin nombre', 'Color', servicio.vehiculo.color ? servicio.vehiculo.color : 'Sin nombre'],
                     ['Serie', servicio.vehiculo.serie ? servicio.vehiculo.serie : 'Sin nombre', 'Año', servicio.vehiculo.ano ? servicio.vehiculo.ano : 'Sin nombre']
                 ],
             };

@@ -19,6 +19,7 @@ import { EstatusGruaModule } from './estatus-grua/estatus-grua.module';
 import { PdfCartaModule } from './pdf-carta/pdf-carta.module';
 import { MarcaModule } from './marca/marca.module';
 import { ModeloModule } from './modelo/modelo.module';
+import { TransaccionServiceModule } from './transaccion-service/transaccion-service.module';
 
 @Module({
   imports: [
@@ -57,6 +58,7 @@ import { ModeloModule } from './modelo/modelo.module';
     PdfCartaModule,
     MarcaModule,
     ModeloModule,
+    TransaccionServiceModule,
   ],
   controllers: [AppController],
   providers: [AppService],

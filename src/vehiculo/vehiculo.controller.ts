@@ -1,6 +1,7 @@
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from '@nestjs/common';
 import { VehiculoService } from './vehiculo.service';
 import { VehiculoDto } from './dto/vehiculo.dto';
+import { EntityManager } from 'typeorm';
 
 @Controller('vehiculo')
 export class VehiculoController {
@@ -24,9 +25,9 @@ export class VehiculoController {
 
     //@UseGuards(JwtAuthGuard, RolesGuard) 
     @Post()
-    async create(@Body() dto: VehiculoDto) {
+    async create(@Body() dto: VehiculoDto,manager: EntityManager) {
         console.log('de dto'+dto);
-        return await this.vehiculoService.create(dto);
+        return await this.vehiculoService.create(dto,manager);
     }
     
    // @UseGuards(JwtAuthGuard, RolesGuard)

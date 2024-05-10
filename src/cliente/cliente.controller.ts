@@ -1,6 +1,7 @@
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from '@nestjs/common';
 import { ClienteService } from './cliente.service';
 import { ClienteDto } from './dto/cliente.dto';
+import { EntityManager } from 'typeorm';
 
 @Controller('cliente')
 export class ClienteController {
@@ -24,9 +25,9 @@ export class ClienteController {
 
     //@UseGuards(JwtAuthGuard, RolesGuard) 
     @Post()
-    async create(@Body() dto: ClienteDto) {
+    async create(@Body() dto: ClienteDto, manager: EntityManager) {
         console.log('de dto'+dto);
-        return await this.clienteService.create(dto);
+        return await this.clienteService.create(dto,manager);
     }
     
    // @UseGuards(JwtAuthGuard, RolesGuard)

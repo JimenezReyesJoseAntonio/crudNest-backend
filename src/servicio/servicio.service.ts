@@ -3,6 +3,7 @@ import { ServicioEntity } from './servicio.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ServicioRepository } from './servicio.repository';
 import { ServicioDto } from './dto/servicio.dto';
+import { EntityManager } from 'typeorm';
 
 @Injectable()
 export class ServicioService {
@@ -32,26 +33,14 @@ export class ServicioService {
     return servcio;
   }
 
-  async create(dto: ServicioDto): Promise<any> {
+   //mandaba un numero ahora manda un any
+   async create(dto: ServicioDto, manager: EntityManager): Promise<any> {
+    const servicio = this.serviceRepository.create(dto);
+    const servicioGuardado = await manager.save(servicio);
+    return servicioGuardado;
+ }
 
-    try {
-      const servicio = this.serviceRepository.create(dto);
-      console.log(servicio.folioServicio);
-      await this.serviceRepository.save(servicio);
-      return servicio;// valor que ocuparemos para el folio del servicio
-    } catch (error) {
-      if (error.code === 'ER_DUP_ENTRY') {
-        // Este código de error es específico de MySQL
-        throw new ConflictException({
-          message: 'Datos duplicados con otro servcio, servicio no creado',
-        });
-      } else {
-        // Maneja otros errores aquí
-        throw error;
-      }
-    }
-  }
-
+  
   async update(id: number, dto: ServicioDto): Promise<any> {
     try {
       const servicio = await this.findById(id);
