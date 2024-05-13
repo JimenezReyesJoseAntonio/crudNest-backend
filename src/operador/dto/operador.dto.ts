@@ -1,18 +1,20 @@
+import { EstatusOperadorEntity } from "src/estatus-operador/estatus-operador.entity";
 import { EstatusDto } from "./estatus.dto";
 
 export class OperadorDto{
-id?: number;
+id: number;
 nombre: string;
 apellidoPaterno: string;
 apellidoMaterno: string;
 numTelefono: string;
-rfc?:string;
+rfc:string;
 curp:string;
-nss?:string;
+nss:string;
 direccion: string;
 codigoPostal: number;
 licencia: string;
 estatus:EstatusDto;
 eliminado: number;
+estatusOperador: EstatusOperadorEntity;
 
 }

@@ -1,7 +1,8 @@
+import { EstatusGruaEntity } from "src/estatus-grua/estatus-grua.entity";
 import { GruaEstatusDto } from "./gruaEstatusDto";
 
 export class GruaDto{
-    noEco?: number;
+    noEco: number;
     placa: string;
     serie: string;
     noPermiso: string;
@@ -10,8 +11,6 @@ export class GruaDto{
     ano:number;
     kilometraje: number;
     eliminado: number;
-
-
-
+    estatusGrua: EstatusGruaEntity;
 
 }

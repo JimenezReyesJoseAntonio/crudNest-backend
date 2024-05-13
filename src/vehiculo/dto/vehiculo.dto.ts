@@ -3,6 +3,7 @@ import { MarcaDto } from "src/marca/dto/marca.dto";
 import { ModeloDto } from "src/modelo/dto/modelo.dto";
 
 export class VehiculoDto{
+    id: number;
     tipoVehiculo: string;
     marca: MarcaDto;
     modelo:ModeloDto;

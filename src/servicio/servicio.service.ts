@@ -54,6 +54,13 @@ export class ServicioService {
       servicio.ubicacionSalida = dto.ubicacionSalida ?? servicio.ubicacionSalida;
       servicio.ubicacionContacto = dto.ubicacionContacto?? servicio.ubicacionContacto;
       servicio.ubicacionTermino = dto.ubicacionTermino?? servicio.ubicacionTermino;
+      servicio.montoCobrado = dto.montoCobrado ?? servicio.montoCobrado;
+      servicio.observaciones = dto.observaciones ?? servicio.observaciones;
+      servicio.operador = dto.operador ?? servicio.operador;
+      servicio.grua = dto.grua ?? servicio.grua;
+
+
+
 
       await this.serviceRepository.save(servicio);
 
