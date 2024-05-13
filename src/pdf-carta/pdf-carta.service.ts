@@ -162,35 +162,35 @@ export class PdfCartaService {
             // Cuerpo (Tabla)
             //doc.text('Tabla de Contenido', 50, doc.y); // La posición Y después del texto anterior
             const table = {
-                headers: ['', '', 'Datos del vehiculo', '', '', ''],
+                headers: ['', '', '  DATOS    DEL', 'VEHICULO', '', ''],
                 rows: [
-                    ['Sinistro', ' ', 'Marca', servicio.vehiculo.marca.nombre ? servicio.vehiculo.marca.nombre : 'Sin nombre', 'Placas', servicio.vehiculo.placas ? servicio.vehiculo.placas : 'sin nombre'],
-                    ['Poliza', '', 'Modelo', servicio.vehiculo.modelo.nombre ? servicio.vehiculo.modelo.nombre : 'Sin nombre', 'Color', servicio.vehiculo.color ? servicio.vehiculo.color : 'Sin nombre'],
-                    ['Serie', servicio.vehiculo.serie ? servicio.vehiculo.serie : 'Sin nombre', 'Año', servicio.vehiculo.ano ? servicio.vehiculo.ano : 'Sin nombre']
+                    ['SINISTRO', ' ', 'MARCA', servicio.vehiculo.marca.nombre ? servicio.vehiculo.marca.nombre : 'Sin nombre', 'PLACAS', servicio.vehiculo.placas ? servicio.vehiculo.placas : 'sin nombre'],
+                    ['POLIZA', '', 'MODELO', servicio.vehiculo.modelo.nombre ? servicio.vehiculo.modelo.nombre : 'Sin nombre', 'COLOR', servicio.vehiculo.color ? servicio.vehiculo.color : 'Sin nombre'],
+                    ['SERIE', servicio.vehiculo.serie ? servicio.vehiculo.serie : 'Sin nombre', 'AÑO', servicio.vehiculo.ano ? servicio.vehiculo.ano : 'Sin nombre']
                 ],
             };
-            doc.table(table, { columnsSize: [75, 100, 75, 75, 75, 75], });
+            doc.table(table, { columnsSize: [75, 100, 70, 75, 75, 75], });
 
             // Cuerpo (Tabla)
            // doc.text('Tabla de Contenido', 50, doc.y); // La posición Y después del texto anterior
             const table2 = {
-                headers: ['', '', 'Datos del operador', '', '', ''],
+                headers: ['', '', '  DATOS    DEL', 'OPERADOR', 'No. OPR', servicio.operador.id ? servicio.operador.id : 'Sin nombre'],
                 rows: [
-                    ['Tipo', 'Operador ', 'Nombre', servicio.operador.nombre ? servicio.operador.nombre : 'Sin nombre', servicio.operador.apellidoPaterno ? servicio.operador.apellidoPaterno : 'sin nombre', servicio.operador.apellidoMaterno ? servicio.operador.apellidoMaterno : 'sin nombre'],
-                    ['RFC',servicio.operador.rfc ? servicio.operador.rfc : 'Sin nombre' , 'Licencia', servicio.operador.licencia ? servicio.operador.licencia : 'Sin nombre', 'Residencia', 'Oaxaca'],
+                    ['TIPO', 'OPERADOR ', 'NOMBRE', servicio.operador.nombre ? servicio.operador.nombre : 'Sin nombre', servicio.operador.apellidoPaterno ? servicio.operador.apellidoPaterno : 'sin nombre', servicio.operador.apellidoMaterno ? servicio.operador.apellidoMaterno : 'sin nombre'],
+                    ['RFC',servicio.operador.rfc ? servicio.operador.rfc : 'Sin nombre' , 'LICENCIA', servicio.operador.licencia ? servicio.operador.licencia : 'Sin nombre', 'RESIDENCIA', 'OAXACA'],
                 ],
             };
-            doc.table(table2, { columnsSize: [75, 100, 75, 75, 75, 75], });
+            doc.table(table2, { columnsSize: [75, 100, 70, 75, 75, 75], });
 
             const table3 = {
-                headers: ['', '', 'Datos de la Grúa', '', '', ''],
+                headers: ['', '', '  DATOS DE   LA ', 'GRÚA', 'NO. ECO',servicio.grua.noEco ? servicio.grua.noEco : 'Sin nombre'],
                 rows: [
-                    ['No. Permiso',servicio.grua.noPermiso ? servicio.grua.noPermiso : 'Sin nombre','','', 'Tipo de transporte','Camión unitario'],
-                    ['Aseguradora',servicio.grua.aseguradora ? servicio.grua.aseguradora  : 'Sin nombre' , 'Poliza', servicio.grua.noPoliza  ? servicio.grua.noPoliza  : 'Sin nombre', 'Placas',servicio.grua.placa  ? servicio.grua.placa  : 'Sin nombre' ],
+                    ['NO. PERMISO',servicio.grua.noPermiso ? servicio.grua.noPermiso : 'Sin nombre','','', 'TIPO DE TRANSPORTE','CAMION UNITARIO'],
+                    ['ASEGURADORA',servicio.grua.aseguradora ? servicio.grua.aseguradora  : 'Sin nombre' , 'POLIZA', servicio.grua.noPoliza  ? servicio.grua.noPoliza  : 'Sin nombre', 'PLACAS',servicio.grua.placa  ? servicio.grua.placa  : 'Sin nombre' ],
                 ],
             };
 
-            doc.table(table3, { columnsSize: [65, 115, 70, 75, 75, 75], });
+            doc.table(table3, { columnsSize: [65, 115, 65, 75, 75, 75], });
             
             // Pie de Página (Footer)
             const footerText = 'Calle Olivos #233 Ex-Hacienda Candiani Santa Cruz Xoxocotlan Oaxaca';

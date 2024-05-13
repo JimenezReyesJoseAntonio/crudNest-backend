@@ -13,7 +13,9 @@ export class ServicioService {
   ) {}
 
   async getAll(): Promise<ServicioEntity[]> {
-    const list = await this.serviceRepository.find();
+    const list = await this.serviceRepository.find({
+      relations: ['cliente', 'vehiculo', 'operador', 'grua', 'usuario'],
+    });
     if (!list.length) {
       throw new NotFoundException({
         message: 'La lista de servicios esta vacia en estos momentos',

@@ -1,6 +1,7 @@
 import { EstatusDto } from "./estatus.dto";
 
 export class OperadorDto{
+id?: number;
 nombre: string;
 apellidoPaterno: string;
 apellidoMaterno: string;
