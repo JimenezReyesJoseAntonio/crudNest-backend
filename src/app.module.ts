@@ -20,6 +20,7 @@ import { PdfCartaModule } from './pdf-carta/pdf-carta.module';
 import { MarcaModule } from './marca/marca.module';
 import { ModeloModule } from './modelo/modelo.module';
 import { TransaccionServiceModule } from './transaccion-service/transaccion-service.module';
+import { TiposVehiculoModule } from './tipos-vehiculo/tipos-vehiculo.module';
 
 @Module({
   imports: [
@@ -59,6 +60,7 @@ import { TransaccionServiceModule } from './transaccion-service/transaccion-serv
     MarcaModule,
     ModeloModule,
     TransaccionServiceModule,
+    TiposVehiculoModule,
   ],
   controllers: [AppController],
   providers: [AppService],

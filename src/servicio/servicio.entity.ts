@@ -17,19 +17,19 @@ export class ServicioEntity{
     @Column({type: 'date', nullable: false})
     fecha: Date;
 
-    @Column({type: 'varchar',length: 20, nullable: false})
+    @Column({type: 'varchar',length: 80, nullable: false})
     ubicacionSalida: string;
 
-    @Column({type: 'varchar',length: 20, nullable: false})
+    @Column({type: 'varchar',length: 80, nullable: false})
     ubicacionContacto: string;
 
     @Column({type: 'float', nullable: false})
     montoCobrado: number;
     
-    @Column({type: 'varchar',length: 20, nullable: false})
+    @Column({type: 'varchar',length: 120, nullable: false})
     observaciones: string;
 
-    @Column({type: 'varchar',length: 20, nullable: false})
+    @Column({type: 'varchar',length: 80, nullable: false})
     ubicacionTermino: string;
 
     @Column({type: 'varchar',length: 20, nullable: false})

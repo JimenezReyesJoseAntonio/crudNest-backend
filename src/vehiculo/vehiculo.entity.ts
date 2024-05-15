@@ -1,6 +1,7 @@
 import { ClienteEntity } from "src/cliente/cliente.entity";
 import { MarcaEntity } from "src/marca/marca.entity";
 import { ModeloEntity } from "src/modelo/modelo.entity";
+import { TiposVehiculoEntity } from "src/tipos-vehiculo/tipos-vehiculo.entity";
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({name:'vehiculo'})
@@ -9,8 +10,10 @@ export class VehiculoEntity{
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({type: 'varchar',length: 20, nullable: false})
-    tipoVehiculo: string;
+    @ManyToOne(() => TiposVehiculoEntity, { eager: true })
+    @JoinColumn({ name: 'tiposVehiculo_id' })
+    tipoVehiculo: TiposVehiculoEntity;
+    
     
     @Column({type: 'varchar',length: 20, nullable: false})
     placas: string;
