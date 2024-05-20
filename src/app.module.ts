@@ -16,11 +16,14 @@ import { ClienteTipoModule } from './cliente-tipo/cliente-tipo.module';
 import { ServicioModule } from './servicio/servicio.module';
 import { EstatusOperadorModule } from './estatus-operador/estatus-operador.module';
 import { EstatusGruaModule } from './estatus-grua/estatus-grua.module';
-import { PdfCartaModule } from './pdf-carta/pdf-carta.module';
+import { PdfCartaModule } from './files/pdf-carta/pdf-carta.module';
 import { MarcaModule } from './marca/marca.module';
 import { ModeloModule } from './modelo/modelo.module';
 import { TransaccionServiceModule } from './transaccion-service/transaccion-service.module';
 import { TiposVehiculoModule } from './tipos-vehiculo/tipos-vehiculo.module';
+import { ExcelServiciosModule } from './files/excel-servicios/excel-servicios.module';
+import { ExcelOperadoresModule } from './files/excel-operadores/excel-operadores.module';
+import { ExcelGruasModule } from './files/excel-gruas/excel-gruas.module';
 
 @Module({
   imports: [
@@ -61,6 +64,9 @@ import { TiposVehiculoModule } from './tipos-vehiculo/tipos-vehiculo.module';
     ModeloModule,
     TransaccionServiceModule,
     TiposVehiculoModule,
+    ExcelServiciosModule,
+    ExcelOperadoresModule,
+    ExcelGruasModule,
   ],
   controllers: [AppController],
   providers: [AppService],

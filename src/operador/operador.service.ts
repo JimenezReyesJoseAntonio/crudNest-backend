@@ -17,7 +17,10 @@ export class OperadorService {
   ) {}
 
   async getAll(): Promise<OperadorEntity[]> {
-    const list = await this.operadorRepository.find();
+    const list = await this.operadorRepository.find({
+      relations: ['estatusOperador']
+    });
+  
     if (!list.length) {
       throw new NotFoundException({
         message: 'La lista de operadores esta vacia en estos momentos',

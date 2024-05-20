@@ -12,7 +12,9 @@ export class GruaService {
     ){}
 
     async getAll(): Promise<GruaEntity[]> {
-        const list = await this.gruaRepository.find();
+        const list = await this.gruaRepository.find({
+            relations: ['estatusGrua']
+          });
         if (!list.length) {
             throw new NotFoundException({message: 'La lista gruas esta vacia en estos momentos'});
         }
