@@ -24,6 +24,7 @@ import { TiposVehiculoModule } from './tipos-vehiculo/tipos-vehiculo.module';
 import { ExcelServiciosModule } from './files/excel-servicios/excel-servicios.module';
 import { ExcelOperadoresModule } from './files/excel-operadores/excel-operadores.module';
 import { ExcelGruasModule } from './files/excel-gruas/excel-gruas.module';
+import { WhatsappModule } from './whatsapp/whatsapp.module';
 
 @Module({
   imports: [
@@ -67,6 +68,7 @@ import { ExcelGruasModule } from './files/excel-gruas/excel-gruas.module';
     ExcelServiciosModule,
     ExcelOperadoresModule,
     ExcelGruasModule,
+    WhatsappModule,
   ],
   controllers: [AppController],
   providers: [AppService],

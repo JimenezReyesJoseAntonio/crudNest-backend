@@ -17,9 +17,7 @@ export class OperadorService {
   ) {}
 
   async getAll(): Promise<OperadorEntity[]> {
-    const list = await this.operadorRepository.find({
-      relations: ['estatusOperador']
-    });
+    const list = await this.operadorRepository.find();
   
     if (!list.length) {
       throw new NotFoundException({
