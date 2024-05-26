@@ -20,6 +20,9 @@ export class VehiculoEntity{
 
     @Column({type: 'varchar',length: 25, nullable: false})
     serie: string;
+
+    @Column({type: 'varchar',length: 25, nullable: false})
+    poliza: string;
     
     @Column({type: 'varchar',length: 20, nullable: false})
     color: string;

@@ -10,6 +10,7 @@ export class VehiculoDto{
     modelo:ModeloDto;
     placas: string;
     serie: string;
+    poliza: string;
     color: string;
     ano:number;
     cliente: ClienteDto;

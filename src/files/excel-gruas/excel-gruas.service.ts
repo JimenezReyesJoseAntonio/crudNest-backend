@@ -14,13 +14,13 @@ export class ExcelGruasService {
     
         worksheet.addRow([
           'NO ECO','PLACA','SERIE','NO PERMISO','ASEGURADORA','NO POLIZA','AÑO',
-          'KILOMETRAJE','ESTATUS','ELIMINADO'
+          'KILOMETRAJE','ELIMINADO'
         ]);
     
         gruas.forEach(grua => {
           worksheet.addRow([
             grua.noEco,grua.placa, grua.serie,grua.noPermiso, grua.aseguradora,grua.noPoliza, grua.ano,
-             grua.kilometraje,grua.estatusGrua.nombreEstatus, grua.eliminado
+             grua.kilometraje, grua.eliminado
 
           ]);
         });

@@ -50,6 +50,7 @@ export class VehiculoService {
             vehiculo.modelo = dto.modelo ?? vehiculo.modelo;
             vehiculo.placas = dto.placas ?? vehiculo.placas;
             vehiculo.serie = dto.serie ?? vehiculo.serie;
+            vehiculo.poliza = dto.poliza ?? vehiculo.poliza;
             vehiculo.color = dto.color ?? vehiculo.color;
             vehiculo.ano = dto.ano ?? vehiculo.ano;
             vehiculo.cliente = dto.cliente ?? vehiculo.cliente;
