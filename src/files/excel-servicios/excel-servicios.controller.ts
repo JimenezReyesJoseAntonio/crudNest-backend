@@ -1,6 +1,7 @@
-import { Controller, Get, Res } from '@nestjs/common';
+import { Controller, Get, Query, Res } from '@nestjs/common';
 import { ExcelServiciosService } from './excel-servicios.service';
 import { Response } from 'express';
+import * as moment from 'moment';
 
 @Controller('excel-servicios')
 export class ExcelServiciosController {
@@ -25,4 +26,35 @@ export class ExcelServiciosController {
       res.status(500).send('Error generating Excel file');
     }
   }
+
+
+  @Get('servicios')
+async getServiciosExcel(
+  @Query('day') day: string,
+  @Query('startDate') startDate: string,
+  @Query('endDate') endDate: string,
+  @Res() res: Response
+) {
+  let buffer: Buffer;
+
+  if (day) {
+    buffer = await this.excelService.generateExcelByDay(day);
+  } else if (startDate && endDate) {
+    const start = moment(startDate).startOf('day').utc().toDate();
+    const end = moment(endDate).endOf('day').utc().toDate();
+    buffer = await this.excelService.generateExcelByDateRange(start, end);
+  } else {
+    res.status(400).send('Invalid date parameters');
+    return;
+  }
+
+  const filename = day ? `servicios_${day}.xlsx` : `servicios_${startDate}_to_${endDate}.xlsx`;
+
+  res.set({
+    'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    'Content-Disposition': `attachment; filename="${filename}"`,
+  });
+  res.end(buffer);
+}
+
 }

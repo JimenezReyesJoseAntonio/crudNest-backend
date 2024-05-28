@@ -3,7 +3,10 @@ import { ServicioEntity } from './servicio.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ServicioRepository } from './servicio.repository';
 import { ServicioDto } from './dto/servicio.dto';
-import { EntityManager } from 'typeorm';
+import { Between, EntityManager } from 'typeorm';
+import * as moment from 'moment';
+import { Logger } from '@nestjs/common';
+
 
 @Injectable()
 export class ServicioService {
@@ -114,7 +117,20 @@ export class ServicioService {
     await this.serviceRepository.save(servcio);
 
     return { message: 'Servicio eliminado' };
+}                                       
+
+async getByDateRange(startDate: Date, endDate: Date): Promise<ServicioEntity[]> {
+  const adjustedStartDate = moment(startDate).startOf('day').utc().toDate();
+  const adjustedEndDate = moment(endDate).endOf('day').utc().toDate();
+  console.log(`Fetching services from ${adjustedStartDate} to ${adjustedEndDate}`);
+  return await this.serviceRepository.find({
+    where: {
+      fecha: Between(adjustedStartDate, adjustedEndDate),
+    },
+    relations: ['cliente', 'vehiculo', 'operador', 'grua', 'usuario'],
+  });
 }
+
 
 
 }
