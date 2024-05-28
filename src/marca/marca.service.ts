@@ -1,7 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { MarcaEntity } from './marca.entity';
 import { MarcaRepository } from './marca.repository';
+import { MarcaDto } from './dto/marca.dto';
 
 @Injectable()
 export class MarcaService {
@@ -17,4 +18,19 @@ export class MarcaService {
         }
         return list;
     }
+
+    async create(dto: MarcaDto): Promise<MarcaEntity> {
+        const { nombre } = dto;
+    
+        // Verifica si la marca ya existe
+        const existingMarca = await this.marcaRepository.findOne({ where: { nombre } });
+    
+        if (existingMarca) {
+          throw new ConflictException('La marca ya existe');
+        }
+    
+        const marca = this.marcaRepository.create(dto);
+        return this.marcaRepository.save(marca);
+      } 
+      
 }

@@ -1,7 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ModeloEntity } from './modelo.entity';
 import { ModeloRepository } from './modelo.repository';
+import { ModeloDto } from './dto/modelo.dto';
 
 @Injectable()
 export class ModeloService {
@@ -17,6 +18,20 @@ export class ModeloService {
         }
         return list;
     }
+
+    async create(dto: ModeloDto): Promise<ModeloEntity> {
+        const { nombre, marcaId } = dto;
+    
+        // Verifica si el modelo ya existe para la misma marca
+        const existingModelo = await this.modeloRepository.findOne({ where: { nombre, marcaId } });
+    
+        if (existingModelo) {
+          throw new ConflictException('El modelo ya existe para esta marca');
+        }
+    
+        const modelo = this.modeloRepository.create(dto);
+        return this.modeloRepository.save(modelo);
+      }
 
 
 }

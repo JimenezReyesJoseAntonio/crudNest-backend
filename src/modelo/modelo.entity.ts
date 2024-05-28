@@ -1,7 +1,9 @@
 import { MarcaEntity } from 'src/marca/marca.entity';
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, Unique } from 'typeorm';
 
 @Entity('modelos')
+@Unique(['nombre', 'marcaId'])  // Restricción única en la combinación de nombre y marcaId
+
 export class ModeloEntity {
   @PrimaryGeneratedColumn()
   id: number;

@@ -1,5 +1,6 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { ModeloService } from './modelo.service';
+import { ModeloDto } from './dto/modelo.dto';
 
 @Controller('modelo')
 export class ModeloController {
@@ -12,4 +13,11 @@ export class ModeloController {
         
         return await this.modeloService.getAll();
     }
+
+    @Post()
+    async createModelo(@Body() dto: ModeloDto) {
+      return this.modeloService.create(dto);
+    }
+
+    
 }
