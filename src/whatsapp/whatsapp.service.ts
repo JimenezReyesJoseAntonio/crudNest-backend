@@ -9,13 +9,23 @@ import { firstValueFrom } from 'rxjs';
 @Injectable()
 export class WhatsappService {
 
-    constructor(private httpService: HttpService){}
+    constructor(private httpService: HttpService) {}
 
-    baseUrl = BASEURL.baseUrlWhatsappCloudApi;
-
-    async testMessage(request:  WhatsappCloudAPIRequest): Promise<AxiosResponse<WhatsappCloudAPIResponse>>{
-        const { data } = await firstValueFrom(this.httpService.post(this.baseUrl,request));
+    private baseUrl = BASEURL.baseUrlWhatsappCloudApi;
+  
+    async testMessage(
+      request: WhatsappCloudAPIRequest,
+    ): Promise<AxiosResponse<WhatsappCloudAPIResponse>> {
+      try {
+        const { data } = await this.httpService.post(
+          this.baseUrl,
+          request,
+        ).toPromise();
         console.log(data);
         return data;
+      } catch (error) {
+        console.error('Error en WhatsappService:', error);
+        throw new Error('Error al enviar el mensaje por WhatsApp');
+      }
     }
 }

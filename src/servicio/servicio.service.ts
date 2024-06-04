@@ -40,6 +40,15 @@ export class ServicioService {
 
    //mandaba un numero ahora manda un any
    async create(dto: ServicioDto, manager: EntityManager): Promise<any> {
+   // Verificar y loguear la fecha recibida
+   console.log('Tipo de fecha recibida:', typeof dto.fecha);
+   const fechaRecibida = dto.fecha;
+   console.log('Fecha recibida en UTC:', fechaRecibida);
+   console.log('Fecha interpretada en hora local:', fechaRecibida);
+   console.log('veri date'+new Date().getTimezoneOffset()); // Debería ser el mismo en ambos lugares
+   // Crear la entidad Servicio
+   dto.fecha = moment(dto.fecha).utc().toDate();
+   console.log('fecha guardada en la bd'+dto.fecha);
     const servicio = this.serviceRepository.create(dto);
     const servicioGuardado = await manager.save(servicio);
     return servicioGuardado;

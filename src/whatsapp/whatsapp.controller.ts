@@ -6,17 +6,21 @@ import { WhatsappService } from './whatsapp.service';
 export class WhatsappController {
 
     private readonly logger = new Logger('whatsapp');
-    constructor(private testsService: WhatsappService){ }
 
+    constructor(private whatsappService: WhatsappService) {}
+  
     @Post()
-    testMessage(@Body() request: WhatsappCloudAPIRequest, @Res() response){
-        this.logger.warn('testMessage');
-        this.testsService.testMessage(request).then( res =>{
-            response.status(HttpStatus.CREATED).json(res);
-
-        }).catch((err) =>{
-            console.log(err.response.data.error);
-            response.status(HttpStatus.BAD_REQUEST).json(err)
-        })
+    async testMessage(
+      @Body() request: WhatsappCloudAPIRequest,
+      @Res() response,
+    ) {
+      this.logger.warn('testMessage');
+      try {
+        const result = await this.whatsappService.testMessage(request);
+        response.status(HttpStatus.CREATED).json(result);
+      } catch (error) {
+        console.error('Error en WhatsappController:', error);
+        response.status(HttpStatus.BAD_REQUEST).json({ error: 'Error al procesar la solicitud' });
+      }
     }
 }

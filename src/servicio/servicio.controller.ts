@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, NotFoundException, Param, ParseIntPipe, 
 import { ServicioService } from './servicio.service';
 import { ServicioDto } from './dto/servicio.dto';
 import { EntityManager } from 'typeorm';
+import * as moment from 'moment';
 
 @Controller('servicio')
 export class ServicioController {
@@ -26,6 +27,8 @@ export class ServicioController {
     //@UseGuards(JwtAuthGuard, RolesGuard) 
     @Post()
     async create(@Body() dto: ServicioDto,manager: EntityManager) {
+      // Convertir la fecha a un objeto Date
+  
         console.log('de dto'+dto);
         return await this.servicioService.create(dto,manager);
     }
