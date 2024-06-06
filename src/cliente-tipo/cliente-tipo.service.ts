@@ -9,12 +9,12 @@ export class ClienteTipoService {
     constructor(
         @InjectRepository(ClienteTipoEntity)
         private clienteTipoRepository: ClienteTipoRepository
-    ){}
+    ) { }
 
     async getAll(): Promise<ClienteTipoEntity[]> {
         const list = await this.clienteTipoRepository.find();
         if (!list.length) {
-            throw new NotFoundException({message: 'La lista clientes esta vacia en estos momentos'});
+            throw new NotFoundException({ message: 'La lista clientes esta vacia en estos momentos' });
         }
         return list;
     }
@@ -22,30 +22,30 @@ export class ClienteTipoService {
     async findById(id: number): Promise<ClienteTipoEntity | null> {
         const cliente = await this.clienteTipoRepository.findOne({ where: { id: id } });
         if (!cliente) {
-            throw new NotFoundException({message: 'no existe'});
+            throw new NotFoundException({ message: 'no existe' });
         }
         return cliente;
     }
 
     async findByNombre(nombre: string): Promise<ClienteTipoEntity> {
-        const producto = await this.clienteTipoRepository.findOne({where:{nombreCliente: nombre} });
+        const producto = await this.clienteTipoRepository.findOne({ where: { nombreCliente: nombre } });
         return producto;
     }
 
 
     async create(dto: ClienteTipoDto): Promise<any> {
         const exists = await this.findByNombre(dto.nombreCliente);
-        if (exists) throw new BadRequestException({message: 'ese  tipo cliente ya existe'});
+        if (exists) throw new BadRequestException({ message: 'ese  tipo cliente ya existe' });
         try {
             const cliente = this.clienteTipoRepository.create(dto);
             console.log(cliente.id);
             console.log(cliente.nombreCliente);
-   
+
             await this.clienteTipoRepository.save(cliente);
-            return {message: 'Tipo cliente registrado'};
+            return { message: 'Tipo cliente registrado' };
         } catch (error) {
             if (error.code === 'ER_DUP_ENTRY') { // Este código de error es específico de MySQL
-                throw new ConflictException({message: error.message});
+                throw new ConflictException({ message: error.message });
             } else {
                 // Maneja otros errores aquí
                 throw error;
@@ -60,12 +60,21 @@ export class ClienteTipoService {
             if (!cliente) {
                 throw new NotFoundException({ message: 'No se encontró el tipo de cliente' });
             }
-    
+
+            const { nombreCliente } = dto;
+
+            // Verifica si el cliente ya existe
+            const existinCliente = await this.clienteTipoRepository.findOne({ where: { nombreCliente } });
+
+            if (existinCliente) {
+                throw new ConflictException('El cliente ya existe');
+            }
+
             cliente.nombreCliente = dto.nombreCliente ?? cliente.nombreCliente;
-    
-            
+
+
             await this.clienteTipoRepository.save(cliente);
-            
+
             return { message: 'Datos del tipo cliente actualizados' };
         } catch (error) {
             // Manejar errores específicos
@@ -80,14 +89,14 @@ export class ClienteTipoService {
     async delete(id: number): Promise<any> {
         const clienteTipo = await this.findById(id);
         if (!clienteTipo) {
-          throw new NotFoundException({ message: 'No se encontró el tipo de cliente' });
+            throw new NotFoundException({ message: 'No se encontró el tipo de cliente' });
         }
-    
+
         clienteTipo.eliminado = 1; // Marcar como eliminada
         await this.clienteTipoRepository.save(clienteTipo);
-    
+
         return { message: 'Tipo cliente eliminado' };
-      }
-    
+    }
+
 
 }
