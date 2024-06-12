@@ -20,7 +20,7 @@ export class OperadorEntity{
     @Column({type: 'varchar',length: 15, nullable: false,unique: true})
     numTelefono: string;
 
-    @Column({type: 'varchar',length: 20, unique: true})
+    @Column({type: 'varchar',length: 20, unique: true,nullable: false})
     rfc:string;
 
     @Column({type: 'varchar',length: 20, nullable: false,unique: true})

@@ -61,14 +61,19 @@ export class ClienteTipoService {
                 throw new NotFoundException({ message: 'No se encontró el tipo de cliente' });
             }
 
-            const { nombreCliente } = dto;
+            // Verificar si algún dato del DTO está duplicado con otro cliente tipo
+            const duplicados = await this.clienteTipoRepository.findOne({ where: { nombreCliente: dto.nombreCliente } });
 
-            // Verifica si el cliente ya existe
-            const existinCliente = await this.clienteTipoRepository.findOne({ where: { nombreCliente } });
+            if (duplicados && duplicados.id !== cliente.id) {
+                // Encontrado un cliente tipo con datos duplicados
+                let mensaje = 'El cliente con ';
+                if (duplicados.nombreCliente === dto.nombreCliente) {
+                    mensaje += ` Nombre cliente: ${dto.nombreCliente}`;
+                }
 
-            if (existinCliente) {
-                throw new ConflictException('El cliente ya existe');
+                throw new ConflictException({ message: mensaje + ' ya existe' });
             }
+
 
             cliente.nombreCliente = dto.nombreCliente ?? cliente.nombreCliente;
 

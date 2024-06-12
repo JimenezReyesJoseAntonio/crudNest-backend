@@ -10,6 +10,21 @@ export class ServicioController {
         private readonly servicioService: ServicioService
     ){}
 
+    @Get('cantidad-total')
+    async getCantidadTotalServicios(): Promise<number> {
+      return this.servicioService.getCantidadTotalServicios();
+    }
+
+    @Get('por-cliente-tipo')
+    async getServiciosPorClienteTipo() {
+        try {
+            const resultados = await this.servicioService.getServiciosPorClienteTipo();
+            return { success: true, data: resultados }; // Aquí se espera la respuesta
+        } catch (error) {
+            return { success: false, message: 'Error al obtener servicios por cliente tipo' };
+        }
+    }
+
     //@RolDecorator([RolNombre.ADMIN,RolNombre.USER])
     //@UseGuards(JwtAuthGuard, RolesGuard)
     @Get()
@@ -66,5 +81,10 @@ export class ServicioController {
     async delete(@Param('id', ParseIntPipe) id: number){
         return await this.servicioService.delete(id)
     }
+
+   
+
+
+
 
 }

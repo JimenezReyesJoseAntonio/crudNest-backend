@@ -142,4 +142,25 @@ async getByDateRange(startDate: Date, endDate: Date): Promise<ServicioEntity[]> 
 
 
 
+async getServiciosPorClienteTipo(): Promise<any> {
+  return this.serviceRepository
+      .createQueryBuilder('servicio')
+      .innerJoin('servicio.cliente', 'cliente')
+      .innerJoin('cliente.clienteTipo', 'clienteTipo')
+      .select('clienteTipo.id', 'clienteTipoId')
+      .addSelect('clienteTipo.nombreCliente', 'clienteTipoNombre')
+      .addSelect('COUNT(servicio.id)', 'cantidad')
+      .groupBy('clienteTipo.id')
+      .getRawMany();
+}
+
+async getCantidadTotalServicios(): Promise<number> {
+  const result = await this.serviceRepository
+    .createQueryBuilder('servicio')
+    .select('COUNT(*)', 'totalServicios')
+    .getRawOne();
+
+  return parseInt(result.totalServicios); // Convertir la cadena a número
+}
+
 }
