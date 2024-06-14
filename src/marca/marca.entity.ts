@@ -11,4 +11,7 @@ export class MarcaEntity {
 
   @OneToMany(() => ModeloEntity, modelo => modelo.marca)
   modelos: ModeloEntity[];
+
+  @Column({type: 'int', nullable: false})
+    eliminado: number;
 }

@@ -26,17 +26,4 @@ export class PdfCartaController {
   }
 
 
-  @Get("download/pdf")
-  async downloadPDF(@Res() res): Promise<void> {
-    const buffer = await this.pdfService.generarPDF();
-
-    res.set({
-      'Content-Type': 'application/pdf',
-      'Content-Disposition': 'attachment; filename=example1.pdf',
-      'Content-Length': buffer.length,
-    })
-
-    res.end(buffer);
-  }
-
 }

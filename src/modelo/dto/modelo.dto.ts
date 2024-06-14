@@ -5,5 +5,6 @@ export class ModeloDto {
     nombre: string; // Descripción opcional del estado
     marcaId: number; // valor 0 si no esta eliminando , valor 1 si esta eliminado
     marca: MarcaEntity;
+    eliminado: number;
 
 }

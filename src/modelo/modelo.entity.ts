@@ -17,4 +17,7 @@ export class ModeloEntity {
   @ManyToOne(() => MarcaEntity, marca => marca.modelos)
   @JoinColumn({ name: 'marca_id' })
   marca: MarcaEntity;
+
+  @Column({type: 'int', nullable: false})
+    eliminado: number;
 }
