@@ -25,5 +25,16 @@ export class PdfCartaController {
     res.end(pdfBuffer);
   }
 
+  @Get('generatepdf/:id')
+  async generatePdfCarta(@Param('id', ParseIntPipe) id: number, @Res({ passthrough: true }) res): Promise<void> {
+    const data = await this.pdfService.getDataById(id); // Obtiene datos de la base de datos
+    const pdfUrl = await this.pdfService.generatePdfCarta(data); // Genera PDF a partir de los datos y obtiene la URL
+
+    //await this.pdfUrlService.savePdfUrl(id, pdfUrl); // Guarda la URL en la base de datos
+
+    res.json({ url: pdfUrl }); // Devuelve la URL como respuesta JSON
+
+  }
+
 
 }
