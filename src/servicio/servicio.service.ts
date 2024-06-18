@@ -38,6 +38,18 @@ export class ServicioService {
     return servcio;
   }
 
+
+  async findByFolio(folio: string): Promise<ServicioEntity | null> {
+    const servcio = await this.serviceRepository.findOne({
+      where: { folioServicio: folio },
+      relations: ['cliente', 'vehiculo', 'operador', 'grua', 'usuario'], // Cargar las relaciones necesarias
+    });
+    if (!servcio) {
+      throw new NotFoundException({ message: 'no existe el servicio con ese folio' });
+    }
+    return servcio;
+  }
+
    //mandaba un numero ahora manda un any
    async create(dto: ServicioDto, manager: EntityManager): Promise<any> {
    // Verificar y loguear la fecha recibida

@@ -27,6 +27,11 @@ export class ServicioController {
 
     //@RolDecorator([RolNombre.ADMIN,RolNombre.USER])
     //@UseGuards(JwtAuthGuard, RolesGuard)
+    @Get(':folio')
+    async getByFolio(@Param('folio') folio: string) {
+        return await this.servicioService.findByFolio(folio);
+    }
+    
     @Get()
     async getAll() {
         
@@ -38,6 +43,8 @@ export class ServicioController {
     async getOne(@Param('id', ParseIntPipe) id: number) {
         return await this.servicioService.findById(id);
     }
+
+   
 
     //@UseGuards(JwtAuthGuard, RolesGuard) 
     @Post()
