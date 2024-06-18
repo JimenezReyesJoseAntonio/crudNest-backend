@@ -2,7 +2,7 @@ import { Body, Controller, HttpStatus, Logger, Post, Res } from '@nestjs/common'
 import { WhatsappCloudAPIRequest } from './dto/whatsapp-cloud-api-request.dto';
 import { WhatsappService } from './whatsapp.service';
 
-@Controller('whatsapp')
+@Controller('api/whatsapp')
 export class WhatsappController {
 
     private readonly logger = new Logger('whatsapp');

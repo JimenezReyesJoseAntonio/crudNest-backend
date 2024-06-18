@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
 import { EstatusService } from './estatus.service';
 
-@Controller('estatusOperador')
+@Controller('api/estatusOperador')
 export class EstatusController {
 
     constructor(

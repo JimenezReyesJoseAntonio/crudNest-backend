@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from '@
 import { MarcaService } from './marca.service';
 import { MarcaDto } from './dto/marca.dto';
 
-@Controller('marca')
+@Controller('api/marca')
 export class MarcaController {
   constructor(
     private readonly marcaService: MarcaService

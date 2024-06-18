@@ -4,7 +4,7 @@ import { ServicioDto } from './dto/servicio.dto';
 import { EntityManager } from 'typeorm';
 import * as moment from 'moment';
 
-@Controller('servicio')
+@Controller('api/servicio')
 export class ServicioController {
     constructor(
         private readonly servicioService: ServicioService
@@ -27,7 +27,7 @@ export class ServicioController {
 
     //@RolDecorator([RolNombre.ADMIN,RolNombre.USER])
     //@UseGuards(JwtAuthGuard, RolesGuard)
-    @Get(':folio')
+    @Get('folio/:folio')
     async getByFolio(@Param('folio') folio: string) {
         return await this.servicioService.findByFolio(folio);
     }

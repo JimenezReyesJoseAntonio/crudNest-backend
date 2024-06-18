@@ -2,7 +2,7 @@ import { Controller, Get, Res } from '@nestjs/common';
 import { ExcelGruasService } from './excel-gruas.service';
 import { Response } from 'express';
 
-@Controller('excel-gruas')
+@Controller('api/excel-gruas')
 export class ExcelGruasController {
 
     constructor(private readonly excelService: ExcelGruasService) {}

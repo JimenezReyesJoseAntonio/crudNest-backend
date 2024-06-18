@@ -1,7 +1,7 @@
 import { Controller, Get } from '@nestjs/common';
 import { GruaEstatusService } from './grua-estatus.service';
 
-@Controller('grua-estatus')
+@Controller('api/grua-estatus')
 export class GruaEstatusController {
 
     constructor(
