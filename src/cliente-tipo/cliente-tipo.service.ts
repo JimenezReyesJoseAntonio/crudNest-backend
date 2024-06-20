@@ -34,8 +34,26 @@ export class ClienteTipoService {
 
 
     async create(dto: ClienteTipoDto): Promise<any> {
-        const exists = await this.findByNombre(dto.nombreCliente);
-        if (exists) throw new BadRequestException({ message: 'ese  tipo cliente ya existe' });
+        const exists = await this.clienteTipoRepository.findOne(
+            {
+                where: [
+                  { nombreCliente: dto.nombreCliente },
+                  { rfc: dto.rfc },
+                ],
+              }
+        );
+        if (exists) {
+            let mensaje = 'El cliente con ';
+            if (exists.nombreCliente === dto.nombreCliente) {
+              mensaje += ` Nombre: ${dto.nombreCliente}`;
+            }
+            if (exists.rfc === dto.rfc) {
+              mensaje += ` RFC: ${dto.rfc}`;
+            }
+            
+            throw new ConflictException({ message: mensaje + ' ya existe' });
+        }
+        
         try {
             const cliente = this.clienteTipoRepository.create(dto);
             console.log(cliente.id);
@@ -62,7 +80,12 @@ export class ClienteTipoService {
             }
 
             // Verificar si algún dato del DTO está duplicado con otro cliente tipo
-            const duplicados = await this.clienteTipoRepository.findOne({ where: { nombreCliente: dto.nombreCliente } });
+            const duplicados = await this.clienteTipoRepository.findOne({ 
+                where: [
+                { nombreCliente: dto.nombreCliente } ,
+                { rfc:dto.rfc}
+            ],
+            });
 
             if (duplicados && duplicados.id !== cliente.id) {
                 // Encontrado un cliente tipo con datos duplicados
@@ -70,12 +93,16 @@ export class ClienteTipoService {
                 if (duplicados.nombreCliente === dto.nombreCliente) {
                     mensaje += ` Nombre cliente: ${dto.nombreCliente}`;
                 }
-
+                if (duplicados.rfc === dto.rfc) {
+                    mensaje += ` RFC: ${dto.rfc}`;
+                }
+                console.log('se duplico un dato');
                 throw new ConflictException({ message: mensaje + ' ya existe' });
             }
 
 
             cliente.nombreCliente = dto.nombreCliente ?? cliente.nombreCliente;
+            cliente.rfc = dto.rfc ?? cliente.rfc;
 
 
             await this.clienteTipoRepository.save(cliente);
