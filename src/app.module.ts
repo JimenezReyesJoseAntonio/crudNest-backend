@@ -25,6 +25,8 @@ import { ExcelServiciosModule } from './files/excel-servicios/excel-servicios.mo
 import { ExcelOperadoresModule } from './files/excel-operadores/excel-operadores.module';
 import { ExcelGruasModule } from './files/excel-gruas/excel-gruas.module';
 import { WhatsappModule } from './whatsapp/whatsapp.module';
+import { CotizacionesModule } from './cotizaciones/cotizaciones.module';
+import { PdfCotizacionModule } from './files/pdf-cotizacion/pdf-cotizacion.module';
 
 @Module({
   imports: [
@@ -69,6 +71,8 @@ import { WhatsappModule } from './whatsapp/whatsapp.module';
     ExcelOperadoresModule,
     ExcelGruasModule,
     WhatsappModule,
+    CotizacionesModule,
+    PdfCotizacionModule,
   ],
   controllers: [AppController],
   providers: [AppService],

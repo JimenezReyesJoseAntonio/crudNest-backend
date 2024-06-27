@@ -30,7 +30,7 @@ export class VehiculoService {
     }
 
     //mandaba un numero ahora manda un any
-    async create(dto: VehiculoDto, manager: EntityManager): Promise<any> {
+    async create(dto: VehiculoDto, manager?: EntityManager): Promise<any> {
         const vehiculo = this.vehiculoRepository.create(dto);
         const vehiculoGuardado = await manager.save(vehiculo);
         return vehiculoGuardado;

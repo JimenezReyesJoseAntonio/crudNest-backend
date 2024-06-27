@@ -3,7 +3,7 @@ import { ClienteService } from './cliente.service';
 import { ClienteDto } from './dto/cliente.dto';
 import { EntityManager } from 'typeorm';
 
-@Controller('api/cliente')
+@Controller('cliente')
 export class ClienteController {
     constructor(
         private readonly clienteService: ClienteService

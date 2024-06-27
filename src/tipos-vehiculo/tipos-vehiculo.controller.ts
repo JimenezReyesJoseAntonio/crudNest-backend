@@ -1,7 +1,7 @@
 import { Controller, Get } from '@nestjs/common';
 import { TiposVehiculoService } from './tipos-vehiculo.service';
 
-@Controller('api/tipos-vehiculo')
+@Controller('tipos-vehiculo')
 export class TiposVehiculoController {
     constructor(
         private readonly tiposVService: TiposVehiculoService

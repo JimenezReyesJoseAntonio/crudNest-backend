@@ -5,7 +5,7 @@ import { VehiculoDto } from 'src/vehiculo/dto/vehiculo.dto';
 import { ServicioDto } from 'src/servicio/dto/servicio.dto';
 import { TransaccionDto } from './dto/transaccion.dto';
 
-@Controller('api/transaccion-service')
+@Controller('transaccion-service')
 export class TransaccionServiceController {
 
     constructor(private readonly transaccionService: TransaccionServiceService) {}

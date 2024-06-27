@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from '@
 import { ClienteTipoService } from './cliente-tipo.service';
 import { ClienteTipoDto } from './dto/cliente-tipo.dto';
 
-@Controller('api/cliente-tipo')
+@Controller('cliente-tipo')
 export class ClienteTipoController {
 
     constructor(

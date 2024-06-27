@@ -6,7 +6,7 @@ import { RolesGuard } from 'src/guards/rol.guard';
 import { RolDecorator } from 'src/decorators/rol.decorator';
 import { RolNombre } from 'src/rol/rol.enum';
 
-@Controller('api/operador')
+@Controller('operador')
 export class OperadorController {
 
     constructor(

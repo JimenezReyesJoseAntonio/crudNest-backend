@@ -32,7 +32,7 @@ export class VehiculoEntity{
 
     @ManyToOne(() => MarcaEntity, { eager: true })
     @JoinColumn({ name: 'marca_id' })
-    marca: MarcaEntity;
+    marca: MarcaEntity; 
 
     @ManyToOne(() => ModeloEntity, { eager: true })
     @JoinColumn({ name: 'modelo_id' })

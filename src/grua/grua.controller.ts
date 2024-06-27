@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from '@
 import { GruaService } from './grua.service';
 import { GruaDto } from './dto/grua.dto';
 
-@Controller('api/grua')
+@Controller('grua')
 export class GruaController {
 
     constructor(

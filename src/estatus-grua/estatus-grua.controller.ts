@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Param, ParseIntPipe, Post } from '@nestjs/common';
 import { EstatusGruaService } from './estatus-grua.service';
 
-@Controller('api/estatus-grua')
+@Controller('estatus-grua')
 export class EstatusGruaController {
     constructor(private readonly estatusGruaService: EstatusGruaService) {}
 
