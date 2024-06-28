@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, NotFoundException, Param, ParseIntPipe, Post, Put } from '@nestjs/common';
 import { GruaService } from './grua.service';
 import { GruaDto } from './dto/grua.dto';
 
@@ -36,6 +36,27 @@ export class GruaController {
         return await this.gruaService.update(id, dto);
     }
 
+    //metodo para cambiar el estatus del servicio
+    @Put(':id/:campo')
+    async actualizarDato(
+      @Param('id') id: number,
+      @Param('campo') campo: string,
+      @Body() body: { valor: any },
+    ): Promise<any> {
+      const { valor } = body;
+  
+      try {
+        const mensaje = await this.gruaService.updateKm(id, campo, valor);
+        return { message: mensaje };
+      } catch (error) {
+        if (error instanceof NotFoundException) {
+          throw new NotFoundException({ message: error.message });
+        } else {
+          throw error;
+        }
+      }
+    }
+  
 
     //@UseGuards(JwtAuthGuard, RolesGuard)
     @Delete(':id')

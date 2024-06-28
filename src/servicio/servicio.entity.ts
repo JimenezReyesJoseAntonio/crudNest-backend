@@ -58,6 +58,11 @@ export class ServicioEntity{
     
     @Column({type: 'int', nullable: false})
     eliminado: number;
-    
+
+   @Column({type: 'int', nullable: false})
+    kmSalida: number;
+
+    @Column({type: 'int', nullable: false})
+    kmEntrada: number;
 
 }

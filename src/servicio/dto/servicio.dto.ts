@@ -18,6 +18,8 @@ export class ServicioDto{
     operador: OperadorDto;
     grua: GruaDto;
     usuario:CreateUsuarioDto ;
+    kmSalida: number;
+    kmEntrada: number;
     eliminado: number;
     //falta grua
 }

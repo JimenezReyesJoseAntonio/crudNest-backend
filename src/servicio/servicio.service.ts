@@ -126,6 +126,33 @@ export class ServicioService {
     }
 }
 
+    //actualiza el estado del servicio
+    async updateKmTermino(id: number, fieldName: string, newValue: any): Promise<any> {
+      try {
+          const servicio = await this.findById(id);
+          if (!servicio) {
+              throw new NotFoundException({ message: 'No se encontró el servicio' });
+          }
+  
+          // Verificar que el campo a actualizar existe en el modelo de Servicio
+          if (!(fieldName in servicio)) {
+              throw new BadRequestException({ message: 'Campo a actualizar no válido' });
+          }
+  
+          servicio[fieldName] = newValue;
+  
+          await this.serviceRepository.save(servicio);
+  
+          return { message: 'Dato del servicio actualizado' };
+      } catch (error) {
+          // Manejar errores específicos
+          if (error.code === 'ER_DUP_ENTRY') {
+              throw new ConflictException({ message: error.message });
+          } else {
+              throw error; // Relanzar otros errores
+          }
+      }
+  }
 
 
   async delete(id: number): Promise<any> {

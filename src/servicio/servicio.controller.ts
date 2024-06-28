@@ -81,6 +81,26 @@ export class ServicioController {
       }
     }
   
+     //metodo para cambiar el km de termino del servicio
+     @Put('updatekm/:id/:campo')
+     async actualizarkm(
+       @Param('id') id: number,
+       @Param('campo') campo: string,
+       @Body() body: { valor: any },
+     ): Promise<any> {
+       const { valor } = body;
+   
+       try {
+         const mensaje = await this.servicioService.updateKmTermino(id, campo, valor);
+         return { message: mensaje };
+       } catch (error) {
+         if (error instanceof NotFoundException) {
+           throw new NotFoundException({ message: error.message });
+         } else {
+           throw error;
+         }
+       }
+     }
 
 
     //@UseGuards(JwtAuthGuard, RolesGuard)
