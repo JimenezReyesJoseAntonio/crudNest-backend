@@ -19,7 +19,7 @@ export class ExcelServiciosService {
     worksheet.addRow([
       'Folio','Fecha','Operador','ECO Grua','Ubicación de salida','Ubicación de contacto','Ubicación de termino',
       'Monto cobrado','Cliente','Datos cliente', 'Observaciones','Asignacion servicio','Tipo vehiculo','Marca',
-      'Modelo','Placas','Color','Año','Serie','Estado servicio'
+      'Modelo','Placas','Color','Año','Serie','Estado servicio','KmSalida','KmEntrada'
     ]);
 
     servicios.forEach(servicio => {
@@ -28,7 +28,8 @@ export class ExcelServiciosService {
         servicio.ubicacionContacto,servicio.ubicacionTermino,servicio.montoCobrado,servicio.cliente?.clienteTipo?.nombreCliente ?? '',
         servicio.cliente?.numTelefono ?? '',servicio.observaciones, servicio.usuario?.nombre ?? '', servicio.vehiculo?.tipoVehiculo?.nombre ?? '',
          servicio.vehiculo?.marca?.nombre ?? '', servicio.vehiculo?.modelo?.nombre ?? '',servicio.vehiculo?.placas ?? '',
-         servicio.vehiculo?.color ?? '', servicio.vehiculo?.ano ?? '',servicio.vehiculo?.serie ?? '', servicio.estadoServicio
+         servicio.vehiculo?.color ?? '', servicio.vehiculo?.ano ?? '',servicio.vehiculo?.serie ?? '', servicio.estadoServicio,
+         servicio.kmSalida ?? '',servicio.kmEntrada ?? ''
       ]);
     });
 
@@ -52,7 +53,7 @@ export class ExcelServiciosService {
     worksheet.addRow([
       'Folio', 'Fecha', 'Operador', 'ECO Grua', 'Ubicación de salida', 'Ubicación de contacto', 'Ubicación de termino',
       'Monto cobrado', 'Cliente', 'Datos cliente', 'Observaciones', 'Asignacion servicio', 'Tipo vehiculo', 'Marca',
-      'Modelo', 'Placas', 'Color', 'Año', 'Serie', 'Estado servicio'
+      'Modelo', 'Placas', 'Color', 'Año', 'Serie', 'Estado servicio','KmSalida','KmEntrada'
     ]);
   
     servicios.forEach(servicio => {
@@ -61,7 +62,8 @@ export class ExcelServiciosService {
         servicio.ubicacionContacto, servicio.ubicacionTermino, servicio.montoCobrado, servicio.cliente?.clienteTipo?.nombreCliente ?? '',
         servicio.cliente?.numTelefono ?? '', servicio.observaciones, servicio.usuario?.nombre ?? '', servicio.vehiculo?.tipoVehiculo?.nombre ?? '',
         servicio.vehiculo?.marca?.nombre ?? '', servicio.vehiculo?.modelo?.nombre ?? '', servicio.vehiculo?.placas ?? '',
-        servicio.vehiculo?.color ?? '', servicio.vehiculo?.ano ?? '', servicio.vehiculo?.serie ?? '', servicio.estadoServicio
+        servicio.vehiculo?.color ?? '', servicio.vehiculo?.ano ?? '', servicio.vehiculo?.serie ?? '', servicio.estadoServicio,
+        servicio.kmSalida ?? '',servicio.kmEntrada ?? ''
       ]);
     });
   

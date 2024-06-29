@@ -13,7 +13,7 @@ export class UsuarioEntity{
     @Column({type:'varchar', length:10, nullable:false, unique:true})
     nombreUsuario:string;
 
-    @Column({type:'varchar', length:10, nullable:false, unique:true})
+    @Column({type:'varchar', length:30, nullable:false, unique:true})
     email:string;
 
     @Column({type:'varchar',nullable:false})

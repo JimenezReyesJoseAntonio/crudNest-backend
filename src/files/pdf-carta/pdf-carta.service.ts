@@ -78,8 +78,8 @@ export class PdfCartaService {
                 addTable(doc, {
                     headers: ['', '', '   DATOS    DEL', 'CLIENTE', '', ''],
                     rows: [
-                        ['Nombre', servicio.cliente?.clienteTipo?.nombreCliente ?? '', 'RFC', servicio.cliente?.clienteTipo?.rfc, 'Cod. Postal', ''],
-                        ['Uso de CFDI', 'Gastos en General'],
+                        ['Nombre', servicio.cliente?.clienteTipo?.nombreCliente ?? '', 'RFC', servicio.cliente?.clienteTipo?.rfc ?? '', 'Cod. Postal', ''],
+                        ['Uso de CFDI', 'GASTOS EN GENERAL'],
                     ],
                 }, 60, 200, [75, 100, 70, 75, 75, 75]);
 
@@ -131,7 +131,7 @@ export class PdfCartaService {
                 doc.font('Helvetica').fontSize(9).fillColor('black');
 
  
-                doc.text(termino);     
+                doc.text(termino);    
 
                 //numero de telefono
                 doc.font('Helvetica-Bold').fontSize(16).fillColor('blue');
@@ -236,7 +236,7 @@ export class PdfCartaService {
             addTable(doc, {
               headers: ['', '', '   DATOS    DEL', 'CLIENTE', '', ''],
               rows: [
-                ['Nombre', servicio.cliente?.clienteTipo?.nombreCliente ?? '', 'RFC', servicio.cliente?.clienteTipo?.rfc, 'Cod. Postal', ''],
+                ['Nombre', servicio.cliente?.clienteTipo?.nombreCliente ?? '', 'RFC', servicio.cliente?.clienteTipo?.rfc ?? '', 'Cod. Postal', ''],
                 ['Uso de CFDI', 'Gastos en General'],
               ],
             }, 60, 200, [75, 100, 70, 75, 75, 75]);
