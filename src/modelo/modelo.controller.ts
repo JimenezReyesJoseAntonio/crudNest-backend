@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from '@
 import { ModeloService } from './modelo.service';
 import { ModeloDto } from './dto/modelo.dto';
 
-@Controller('modelo')
+@Controller('api/modelo')
 export class ModeloController {
     constructor(
         private readonly modeloService: ModeloService

@@ -319,7 +319,7 @@ export class PdfCartaService {
           }
         });
     
-        return `http://localhost:8080/pdfs/pdf_${servicio.folioServicio}.pdf`;
-      }
+        return `http://147.182.235.130/api/pdfs/pdf_${servicio.folioServicio}.pdf`;
+            }
 
 }

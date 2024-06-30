@@ -1,7 +1,7 @@
 import { Controller, Res, Get, Param, ParseIntPipe } from '@nestjs/common';
 import { PdfCartaService } from './pdf-carta.service';
 
-@Controller('pdf-carta')
+@Controller('api/pdf-carta')
 export class PdfCartaController {
 
   constructor(private readonly pdfService: PdfCartaService) { }

@@ -3,7 +3,7 @@ import { ExcelServiciosService } from './excel-servicios.service';
 import { Response } from 'express';
 import * as moment from 'moment';
 
-@Controller('excel-servicios')
+@Controller('api/excel-servicios')
 export class ExcelServiciosController {
   constructor(private readonly excelService: ExcelServiciosService) {}
 

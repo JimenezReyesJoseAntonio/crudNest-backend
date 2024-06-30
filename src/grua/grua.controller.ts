@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, NotFoundException, Param, ParseIntPipe, 
 import { GruaService } from './grua.service';
 import { GruaDto } from './dto/grua.dto';
 
-@Controller('grua')
+@Controller('api/grua')
 export class GruaController {
 
     constructor(

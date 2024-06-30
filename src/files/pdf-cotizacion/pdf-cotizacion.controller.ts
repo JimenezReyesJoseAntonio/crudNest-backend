@@ -1,7 +1,7 @@
 import { Controller, Get, Param, ParseIntPipe, Res } from '@nestjs/common';
 import { PdfCotizacionService } from './pdf-cotizacion.service';
 
-@Controller('pdf-cotizacion')
+@Controller('api/pdf-cotizacion')
 export class PdfCotizacionController {
     constructor(private readonly pdfCotizacion: PdfCotizacionService) { }
     

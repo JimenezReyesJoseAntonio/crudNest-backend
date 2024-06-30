@@ -4,7 +4,7 @@ import { ServicioDto } from './dto/servicio.dto';
 import { EntityManager } from 'typeorm';
 import * as moment from 'moment';
 
-@Controller('servicio')
+@Controller('api/servicio')
 export class ServicioController {
     constructor(
         private readonly servicioService: ServicioService

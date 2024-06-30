@@ -59,7 +59,10 @@ export class ServicioService {
    console.log('Fecha interpretada en hora local:', fechaRecibida);
    console.log('veri date'+new Date().getTimezoneOffset()); // Debería ser el mismo en ambos lugares
    // Crear la entidad Servicio
-   dto.fecha = moment(dto.fecha).utc().toDate();
+// Convertir la fecha recibida a un objeto Date sin cambiar el día
+   dto.fecha = new Date(fechaRecibida + 'T00:00:00Z');
+   console.log('Fecha guardada en la BD (UTC):', dto.fecha);
+
    console.log('fecha guardada en la bd'+dto.fecha);
     const servicio = this.serviceRepository.create(dto);
     const servicioGuardado = await manager.save(servicio);

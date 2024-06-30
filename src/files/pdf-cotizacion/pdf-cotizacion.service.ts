@@ -271,7 +271,7 @@ export class PdfCotizacionService {
             }
           });
       
-          return `http://localhost:8080/pdfs/pdf_${cotizacion.id}.pdf`;
+          return `http://147.182.235.130/api/pdfs/pdf_${cotizacion.id}.pdf`;
         }
   
 }

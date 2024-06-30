@@ -2,7 +2,7 @@ import { Controller, Get, Res } from '@nestjs/common';
 import { ExcelOperadoresService } from './excel-operadores.service';
 import { Response } from 'express';
 
-@Controller('excel-operadores')
+@Controller('api/excel-operadores')
 export class ExcelOperadoresController {
 
     constructor(private readonly excelService: ExcelOperadoresService) {}

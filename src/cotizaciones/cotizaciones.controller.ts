@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, NotFoundException, Param, ParseIntPipe, 
 import { CotizacionesService } from './cotizaciones.service';
 import { CotizacionDto } from './dto/cotizaciones.dto';
 
-@Controller('cotizaciones')
+@Controller('api/cotizaciones')
 export class CotizacionesController {
     constructor(
         private readonly cotizacionService: CotizacionesService

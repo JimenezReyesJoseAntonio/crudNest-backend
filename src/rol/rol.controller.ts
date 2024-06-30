@@ -2,7 +2,7 @@ import { Body, Controller, Get, Post, UsePipes, ValidationPipe } from '@nestjs/c
 import { RolService } from './rol.service';
 import { CreateRolDto } from './dto/create-rol.dto';
 
-@Controller('rol')
+@Controller('api/rol')
 export class RolController {
     constructor(private readonly rolService: RolService) {}
 

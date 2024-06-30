@@ -19,7 +19,7 @@ async function bootstrap() {
 
     // Configurar los archivos estáticos
     app.useStaticAssets(join(__dirname, '..', 'pdfs'), {
-      prefix: '/pdfs',
+      prefix: '/api/pdfs',
     });
 
   await app.listen(port);
